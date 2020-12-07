@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_run.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdelphia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:41:46 by mdelphia          #+#    #+#             */
-/*   Updated: 2020/04/09 16:12:54 by mdelphia         ###   ########.fr       */
+/*   Updated: 2020/12/07 16:46:23 by vdaemoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ int			check_run(t_exec_lst *execlist, t_pars_list **list)
 		else
 			status = run_fork(execlist, list);
 	}
+	g_exit_status = status;
 	return (status);
 }

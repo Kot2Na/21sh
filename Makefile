@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: student <student@student.42.fr>            +#+  +:+       +#+         #
+#    By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/16 21:51:15 by student           #+#    #+#              #
-#    Updated: 2020/04/30 02:02:55 by student          ###   ########.fr        #
+#    Updated: 2020/12/07 16:44:08 by vdaemoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -167,6 +167,7 @@ DIRS_SRC					:=	$(DIR_SRC)\
 
 
 MAIN_HEADERS				:=	sh.h\
+									gl.h\
 									history.h\
 									internal_utilities.h\
 									sh_bonus.h\
@@ -225,9 +226,11 @@ all: $(LIBFT) $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS_WITH_PATH) $(PATH_LIBFT) -o $@ -ltermcap
+	@echo "\033[32mBinary \033[1;32m$(NAME)\033[1;0m\033[32m created.\033[0m"
 
 $(OBJS):%.o:%.c $(HEADERS) | $(DIR_OBJ)
 	$(CC) $(CFLAGS) -c $< -o $(DIR_OBJ)$@ $(PATH_HEADERS)
+	@echo "\033[34m\033[1mCompilation of \033[0m\033[36m$(notdir $<)\033[1m\033[34m done.\033[0m"
 
 $(LIBFT):
 	$(MAKE_LIBFT)
@@ -239,10 +242,12 @@ clean:
 	$(REMOVE) $(OBJS_WITH_PATH)
 	$(REMOVE) $(DIR_OBJ)
 	$(MAKE_CLEAN_LIBFT)
+	@echo "\033[31mObjects files removed.\033[0m"
 
 fclean: clean
 	$(REMOVE) $(NAME)
 	$(MAKE_FCLEAN_LIBFT)
+	@echo "\033[31mBinary \033[1;31m$(NAME)\033[1;0m\033[31m removed.\033[0m"
 
 re: fclean all
 
