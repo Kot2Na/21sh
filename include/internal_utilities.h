@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   internal_utilities.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksharlen <ksharlen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:20:33 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/03/13 19:03:35 by ksharlen         ###   ########.fr       */
+/*   Updated: 2020/12/07 13:59:16 by vdaemoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "libft.h"
 # include "sh_struct.h"
 # include "exec.h"
+# include "gl.h"
 
 /*
 **ERRORS

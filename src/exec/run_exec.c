@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_exec.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdelphia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:42:49 by mdelphia          #+#    #+#             */
-/*   Updated: 2020/04/10 21:11:35 by mdelphia         ###   ########.fr       */
+/*   Updated: 2020/12/07 14:44:59 by vdaemoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	write_name_environ(char *str, char *buf)
 	}
 	buf[i] = '\0';
 	return (1);
-}	 
+}
 
 char		*find_path_param(char **sh_environ)
 {

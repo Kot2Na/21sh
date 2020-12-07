@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksharlen <ksharlen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 03:10:16 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/03/08 19:32:43 by ksharlen         ###   ########.fr       */
+/*   Updated: 2020/12/07 14:46:56 by vdaemoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void		sh21_init(t_init *init, char **env, t_exec_lst *execlist)
 {
 	if (init)
 	{
+		g_exit_status = 0;
 		init_env(execlist, env);
 		init_user(&init->u_inf);
 		sh21_init_start_env(&init->execlist, &init->env, &init->u_inf);

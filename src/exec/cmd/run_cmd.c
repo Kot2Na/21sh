@@ -3,19 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   run_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdelphia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:56:21 by mdelphia          #+#    #+#             */
-/*   Updated: 2020/04/10 21:10:32 by mdelphia         ###   ########.fr       */
+/*   Updated: 2020/12/07 14:47:00 by vdaemoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-static int	find_and_run_cmd(t_exec_lst *execlist, t_pars_list *list)
+static int	find_and_run_cmd(t_exec_lst *execlist, t_pars_list *list, int argc)
 {
-	int		argc;
-
 	argc = ft_lineslen(list->pars_args);
 	if (!ft_strcmp("true", list->name_func))
 		list->status = cmd_true();
@@ -38,6 +36,7 @@ static int	find_and_run_cmd(t_exec_lst *execlist, t_pars_list *list)
 		list->status = iu_type(execlist, list);
 	else if (!ft_strcmp("env", list->name_func))
 		exec_env(execlist, list);
+	g_exit_status = list->status;
 	return (execlist->sh_term_lst.exec_status = list->status);
 }
 
@@ -45,5 +44,5 @@ int			run_cmd(t_exec_lst *execlist, t_pars_list *list)
 {
 	if (list->f_delimiter & V_DOLLAR)
 		insert_dollar_args(execlist, list);
-	return (find_and_run_cmd(execlist, list));
+	return (find_and_run_cmd(execlist, list, 0));
 }

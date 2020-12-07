@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   iu_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksharlen <ksharlen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 18:36:53 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/02/16 18:36:54 by ksharlen         ###   ########.fr       */
+/*   Updated: 2020/12/07 14:47:18 by vdaemoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,37 @@
 
 #define COLOR_DEFAULT	"\e[0m"
 
+static void	execute_question(int v)
+{
+	v == 1 ? ft_printf("%d ", g_exit_status) : ft_printf("%d", g_exit_status);
+}
+
+static int	found_question(const char *s)
+{
+	if (ft_strequ(s, "$?"))
+		return (1);
+	if (ft_strequ(s, "${?}"))
+		return (1);
+	return (0);
+}
+
 static void	work_echo(char *const argv[])
 {
 	while (*argv && *(argv + 1))
 	{
+		if (found_question(*argv))
+		{
+			execute_question(1);
+			++argv;
+			break ;
+		}
 		ft_printf("%s ", *argv);
 		++argv;
+	}
+	if (*argv && found_question(*argv))
+	{
+		execute_question(0);
+		argv++;
 	}
 	ft_printf("%s", *argv ? *argv : "");
 }
