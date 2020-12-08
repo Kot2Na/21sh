@@ -16,7 +16,15 @@
 
 static void	execute_question(int v)
 {
-	v == 1 ? ft_printf("%d ", g_exit_status) : ft_printf("%d", g_exit_status);
+	int res;
+	int help;
+
+	res = 0;
+	help = g_exit_status;
+	res = (help >= 0 ? (help % 255) : (256 + (help % 255)));
+	if ((res % 256) == 0)
+		res = 0;
+	v == 1 ? ft_printf("%d ", res) : ft_printf("%d", res);
 }
 
 static int	found_question(const char *s)
