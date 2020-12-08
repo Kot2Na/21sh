@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdelphia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 19:42:09 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/03/18 14:10:07 by mdelphia         ###   ########.fr       */
+/*   Updated: 2020/12/07 18:18:45 by vdaemoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ void			status_child(t_exec_lst *execlist, int stat_child,
 void			handler_child(int sig)
 {
 	if (sig == SIGINT)
-		exit(EXIT_FAILURE);
+	{
+		g_exit_status = 130;
+		exit(130);
+	}
 }
 
 void			sh21_signals(void (*handler)(int))
