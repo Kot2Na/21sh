@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:41:46 by mdelphia          #+#    #+#             */
-/*   Updated: 2020/12/09 01:08:34 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/09 01:14:53 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void		ignore_signals(int sig)
 {
-	// (void)sig;
 	kill(g_pid, sig);
 }
 
