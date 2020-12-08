@@ -16,5 +16,6 @@
 # include "sh.h"
 
 int	g_exit_status;
+int g_sigint_status;
 
 #endif
