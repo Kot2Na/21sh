@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_run.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:41:46 by mdelphia          #+#    #+#             */
-/*   Updated: 2020/12/07 17:29:44 by vdaemoni         ###   ########.fr       */
+/*   Updated: 2020/12/09 01:08:34 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,34 @@
 
 void		ignore_signals(int sig)
 {
-	(void)sig;
+	// (void)sig;
+	kill(g_pid, sig);
 }
 
 static void	cod_child(t_exec_lst *execlist, t_pars_list **list)
 {
+	entry_canon(&((g_init->inp).cfg_cpy));
 	if (!stream_and_file(execlist, *list))
 		run_exec(-1, (*list), execlist);
 	else
 		exit(1);
+	entry_not_canon(&((g_init->inp).cfg_cpy));
 }
 
 static int	run_fork(t_exec_lst *execlist, t_pars_list **list)
 {
 	pid_t	pid;
 
-	sh21_signals(ignore_signals);
 	if ((pid = fork()) < 0)
 		error_system(execlist, EXEC_ERROR_NUM);
 	if (!pid)
 	{
 		write_name_run(execlist, *list);
-		sh21_signals(ignore_signals);
 		cod_child(execlist, list);
 	}
+	else
+		sh21_signals(ignore_signals);
+	g_pid = pid;
 	waitpid(pid, &(*list)->status, WUNTRACED);
 	error_system(execlist, (*list)->status);
 	status_child(execlist, (*list)->status, pid, (*list)->name_run_func);

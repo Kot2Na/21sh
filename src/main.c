@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 16:55:32 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/12/08 15:32:37 by vdaemoni         ###   ########.fr       */
+/*   Updated: 2020/12/09 00:40:44 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int			main(int argc, char **argv, char **env)
 	(void)(argv);
 	(void)(env);
 	sh21_init(&init, env, &init.execlist);
+	g_init = &init;
 	while (1)
 	{
 		input_begin(&init.execlist, &init.inp);

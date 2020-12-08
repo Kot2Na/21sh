@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 21:55:03 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/12/07 13:56:03 by vdaemoni         ###   ########.fr       */
+/*   Updated: 2020/12/08 23:08:57 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <sys/ioctl.h>
 # include <fcntl.h>
+# include <signal.h>
 
 # include "libft.h"
 # include "sh_limits.h"
