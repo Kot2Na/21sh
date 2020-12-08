@@ -132,6 +132,8 @@ int			sh21_cd(t_exec_lst *execlist, int argc, char **argv, char **env)
 				FLAG_ON);
 			sh21_setenv(execlist, "PWD", cwd, FLAG_ON);
 		}
+		else
+			return (1);
 	}
 	return (0);
 }
