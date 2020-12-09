@@ -80,7 +80,7 @@ int			check_run(t_exec_lst *execlist, t_pars_list **list)
 		else
 			status = run_fork(execlist, list);
 	}
-	g_exit_status = (g_sigint_status ? 130 : status);
-	g_sigint_status = 0;
+	g_exit_status = (g_sig_status ? g_sig_status : status);
+	g_sig_status = 0;
 	return (status);
 }

@@ -30,7 +30,7 @@ void			status_child(t_exec_lst *execlist, int stat_child,
 		lvl_proccess = "1";
 	if (stat_child == SIGINT)
 	{
-		g_sigint_status = 1;
+		g_sig_status = 130;
 		ft_printf("\n");
 	}
 	else if (stat_child == SIGSEGV)

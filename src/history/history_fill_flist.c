@@ -31,15 +31,30 @@ t_history	*history_add_new_elem(t_history *hist, char *str)
 	return (hist);
 }
 
+static int	full_spaces_command(char *s)
+{
+	int i;
+
+	i = -1;
+	while (s[++i] == 32)
+		NULL ;
+	if (s[i])
+		return (0);
+	return (1);
+}
+
 t_history	*history_fill_history(t_history *hist, char *str)
 {
 	if (str)
 	{
-		if (!hist->end->prev->comand || ft_strcmp(hist->end->prev->comand, str))
+		if (full_spaces_command(str) == 0)
 		{
-			hist = history_add_new_elem(hist, str);
-			ft_printf("%v%zd:", hist->fd, time(NULL));
-			ft_printf("%v%s\n", hist->fd, hist->h_list->prev->comand);
+			if (!hist->end->prev->comand || ft_strcmp(hist->end->prev->comand, str))
+			{
+				hist = history_add_new_elem(hist, str);
+				ft_printf("%v%zd:", hist->fd, time(NULL));
+				ft_printf("%v%s\n", hist->fd, hist->h_list->prev->comand);
+			}
 		}
 	}
 	hist->h_list = hist->end;

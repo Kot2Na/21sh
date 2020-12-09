@@ -59,7 +59,7 @@ static void	fill_path_heredoc(char *path_heredoc)
 static void	init_globals(void)
 {
 	g_exit_status = 0;
-	g_sigint_status = 0;
+	g_sig_status = 0;
 }
 
 void		sh21_init(t_init *init, char **env, t_exec_lst *execlist)
