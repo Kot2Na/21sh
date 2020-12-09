@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gl.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 13:53:09 by vdaemoni          #+#    #+#             */
-/*   Updated: 2020/12/07 14:46:31 by vdaemoni         ###   ########.fr       */
+/*   Updated: 2020/12/10 02:15:21 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,7 @@
 
 int	g_exit_status;
 int g_sig_status;
+int	g_pid;
+t_init *g_init;
 
 #endif
