@@ -52,6 +52,7 @@ static int	check_ext_key(struct s_input *inp)
 	}
 	else if (inp->key == ('c' & 0x1f))
 	{
+		g_exit_status = 130;
 		input_put_new_line(inp);
 		clean_struct_input(inp);
 		ext_key = IS_CTR_C;

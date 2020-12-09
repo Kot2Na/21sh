@@ -29,5 +29,5 @@ int		sh21_pwd(int argc, char *argv[], char *env[])
 			return (0);
 		}
 	}
-	return (-1);
+	return (1);
 }

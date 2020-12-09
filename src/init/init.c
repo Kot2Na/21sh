@@ -56,11 +56,17 @@ static void	fill_path_heredoc(char *path_heredoc)
 	ft_strcat(path_heredoc, NAME_HEREDOC);
 }
 
+static void	init_globals(void)
+{
+	g_exit_status = 0;
+	g_sigint_status = 0;
+}
+
 void		sh21_init(t_init *init, char **env, t_exec_lst *execlist)
 {
 	if (init)
 	{
-		g_exit_status = 0;
+		init_globals();
 		init_env(execlist, env);
 		init_user(&init->u_inf);
 		sh21_init_start_env(&init->execlist, &init->env, &init->u_inf);

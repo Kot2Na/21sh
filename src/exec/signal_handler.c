@@ -29,7 +29,10 @@ void			status_child(t_exec_lst *execlist, int stat_child,
 	if (!lvl_proccess)
 		lvl_proccess = "1";
 	if (stat_child == SIGINT)
+	{
+		g_sigint_status = 1;
 		ft_printf("\n");
+	}
 	else if (stat_child == SIGSEGV)
 		print_sig_error(lvl_proccess, pid_child, ESIG, path_cmd);
 	else if (stat_child == SIGABRT)
