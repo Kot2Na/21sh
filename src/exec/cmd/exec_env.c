@@ -59,7 +59,7 @@ static char	**skip_env_flags(char **pars_list, int *argc)
 	return (new_args);
 }
 
-void		exec_env(t_exec_lst *execlist, t_pars_list *list)
+void		exec_env(t_exec_lst *execlist, t_pars_list *list, t_job *jobs)
 {
 	char	**cpy_environ_src;
 	int		argc;
@@ -72,7 +72,7 @@ void		exec_env(t_exec_lst *execlist, t_pars_list *list)
 	if (argc > 0)
 	{
 		list->name_func = list->pars_args[0];
-		check_run(execlist, &list);
+		check_run(execlist, &list, jobs);
 		ft_strdel_split(execlist->sh_environ);
 		free(execlist->sh_environ);
 		execlist->sh_environ = ft_linedup(cpy_environ_src);

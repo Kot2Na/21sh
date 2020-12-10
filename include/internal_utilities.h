@@ -107,6 +107,7 @@ void					work_opt(t_exec_lst *execlist, char *const *p_argv,
 							t_env *env);
 int						exit_with_code(t_pars_list *list);
 int						iu_type(t_exec_lst *execlist, t_pars_list *list);
+t_globs					*globs(void);
 
 /*
 **WORK_FLAGS

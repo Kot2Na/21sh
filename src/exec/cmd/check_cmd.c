@@ -29,7 +29,8 @@ static int	check_name_cmd(char *name_func)
 		!(ft_strcmp("unsetenv", name_func)) ||
 		!(ft_strcmp("env", name_func)) ||
 		!(ft_strcmp("type", name_func)) ||
-		!(ft_strcmp("exit", name_func)))
+		!(ft_strcmp("exit", name_func)) ||
+		!(ft_strcmp("jobs", name_func)))
 		return (1);
 	return (0);
 }
@@ -42,7 +43,7 @@ int			check_cmd(char *name_func)
 	if (!(ft_strcmp("t", buf)) || !(ft_strcmp("f", buf)) ||
 		!(ft_strcmp("c", buf)) || !(ft_strcmp("e", buf)) ||
 		!(ft_strcmp("p", buf)) || !(ft_strcmp("s", buf)) ||
-		!(ft_strcmp("u", buf)))
+		!(ft_strcmp("u", buf)) || !(ft_strcmp("j", buf)))
 		return (check_name_cmd(name_func));
 	return (0);
 }

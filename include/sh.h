@@ -23,6 +23,7 @@
 # include <fcntl.h>
 # include <signal.h>
 
+# include "gl.h"
 # include "libft.h"
 # include "sh_limits.h"
 # include "sh_struct.h"

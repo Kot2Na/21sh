@@ -60,12 +60,13 @@ void			handler_child(int sig)
 
 void			sh21_signals(void (*handler)(int))
 {
-	// signal(SIGINT, handler);
+	signal(SIGINT, handler);
 	// signal(SIGQUIT, handler);
 	int sig;
 
 	sig = 0;
 	while (sig++ < SIGUSR2)
-		signal(sig, handler);
+		if (sig != 9)
+			signal(sig, handler);
 	
 }

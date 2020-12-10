@@ -28,20 +28,21 @@
 # include "internal_utilities.h"
 # include "input_error.h"
 # include "input_parse_key.h"
+# include "sh_jobs.h"
 
 /*
 ** exec function
 */
-void			check_choice(t_exec_lst *execlist, t_pars_list *list);
-int				check_run(t_exec_lst *execlist, t_pars_list **list);
+void			check_choice(t_exec_lst *execlist, t_pars_list *list, t_job *jobs);
+int				check_run(t_exec_lst *execlist, t_pars_list **list, t_job *jobs);
 int				stream_and_file(t_exec_lst *execlist, t_pars_list *list);
 int				create_file(t_red_stream *stream_list);
 int				redirect_stream(t_red_stream *stream_list);
 int				dup_fd_and_close(int fd, int dup_fd);
-int				run_ampersant(t_exec_lst *execlist, t_pars_list **list);
+int				run_ampersant(t_exec_lst *execlist, t_pars_list **list, t_job *jobs);
 void			run_exec(int fd, t_pars_list *list, t_exec_lst *execlist);
 void			run_pipe(t_exec_lst *execlist, t_pipe_list **pipelist,
-					t_pars_list **list);
+					t_pars_list **list, t_job *jobs);
 int				new_or_open_file(char *file_name, int flag_open);
 t_pars_list		*free_pars_list(t_pars_list **list);
 t_pipe_list		*new_pipe_list(t_exec_lst *execlist, t_pipe_list *pipelist);
@@ -68,8 +69,8 @@ void			find_name_path(char *name_path, size_t *i, t_pars_list *list,
 ** comands
 */
 int				check_cmd(char *name_func);
-int				run_cmd(t_exec_lst *execlist, t_pars_list *list);
-void			exec_env(t_exec_lst *execlist, t_pars_list *list);
+int				run_cmd(t_exec_lst *execlist, t_pars_list *list, t_job *jobs);
+void			exec_env(t_exec_lst *execlist, t_pars_list *list, t_job *jobs);
 int				cmd_true(void);
 int				cmd_false(void);
 /*

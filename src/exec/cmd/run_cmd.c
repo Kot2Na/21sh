@@ -12,8 +12,10 @@
 
 #include "exec.h"
 
-static int	find_and_run_cmd(t_exec_lst *execlist, t_pars_list *list, int argc)
+static int	find_and_run_cmd(t_exec_lst *execlist, t_pars_list *list, t_job *jobs)
 {
+	int argc;
+
 	argc = ft_lineslen(list->pars_args);
 	if (!ft_strcmp("true", list->name_func))
 		list->status = cmd_true();
@@ -34,14 +36,16 @@ static int	find_and_run_cmd(t_exec_lst *execlist, t_pars_list *list, int argc)
 		list->status = exit_with_code(list);
 	else if (!ft_strcmp("type", list->name_func))
 		list->status = iu_type(execlist, list);
+	else if (!ft_strcmp("jobs", list->name_func))
+		list->status = sh42_jobs(jobs);
 	else if (!ft_strcmp("env", list->name_func))
-		exec_env(execlist, list);
+		exec_env(execlist, list, jobs);
 	return (execlist->sh_term_lst.exec_status = list->status);
 }
 
-int			run_cmd(t_exec_lst *execlist, t_pars_list *list)
+int			run_cmd(t_exec_lst *execlist, t_pars_list *list, t_job *jobs)
 {
 	if (list->f_delimiter & V_DOLLAR)
 		insert_dollar_args(execlist, list);
-	return (find_and_run_cmd(execlist, list, 0));
+	return (find_and_run_cmd(execlist, list, jobs));
 }

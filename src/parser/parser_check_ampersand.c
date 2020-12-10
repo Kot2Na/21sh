@@ -16,5 +16,10 @@ void		parser_check_ampersand(char *splitter, t_pars_list *list)
 {
 	if (*splitter != '&' || (*splitter == '&' && *(splitter + 1) == '&'))
 		return ;
+	if (*splitter == '&' && (*splitter == ' ' || *splitter == '\n'))
+	{
+		list->foreground = 0;
+		return;
+	}
 	write_flag_and_nbr_ampersand(list);
 }

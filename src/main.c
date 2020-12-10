@@ -34,9 +34,16 @@ int			main(int argc, char **argv, char **env)
 			break ;
 		else if (init.inp.str_for_parse &&
 		!parser(&init.execlist, &(init.inp.str_for_parse), &init.prs))
-			check_choice(&init.execlist, init.prs.beg);
-		free_befor_exec(&init.prs);
+		{
+			job_control(&init.execlist, init.prs.beg, &init.jobs, init.inp.str_for_parse);
+			//init.jobs.command = ft_strdup(init.inp.str_for_parse);
+			//check_choice(&init.execlist, init.prs.beg, &init.jobs);
+		}
+		init.prs.beg = NULL;
+		init.prs.end = NULL;
+		//free_befor_exec(&init.prs);
 	}
+	job_destroy(init.jobs);
 	input_finish(&init.inp);
 	sh21_finish(init.execlist.sh_environ);
 	return (0);

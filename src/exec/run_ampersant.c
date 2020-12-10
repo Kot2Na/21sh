@@ -50,7 +50,7 @@ static void	put_end_ampersant(t_pars_list *buf_list, char *str_nbr_ampersant)
 	put_name_func(buf_list, buf_list->nbr_ampersant);
 }
 
-int			run_ampersant(t_exec_lst *execlist, t_pars_list **list)
+int			run_ampersant(t_exec_lst *execlist, t_pars_list **list, t_job *jobs)
 {
 	pid_t		pid;
 	char		str_nbr_ampersant[BUFSIZ];
@@ -66,7 +66,7 @@ int			run_ampersant(t_exec_lst *execlist, t_pars_list **list)
 			execlist->sh_term_lst.pid_last = pid;
 			ft_strcat(str_nbr_ampersant, ft_itoa((*list)->nbr_ampersant));
 			put_nbr_ampersant(str_nbr_ampersant, pid);
-			check_run(execlist, list);
+			check_run(execlist, list, jobs);
 			waitpid(pid, 0, WUNTRACED);
 			put_end_ampersant(buf_list, str_nbr_ampersant);
 			exit(0);

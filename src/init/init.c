@@ -69,11 +69,13 @@ void		sh21_init(t_init *init, char **env, t_exec_lst *execlist)
 		init_globals();
 		init_env(execlist, env);
 		init_user(&init->u_inf);
+		init_shell();
 		sh21_init_start_env(&init->execlist, &init->env, &init->u_inf);
 		init_path(&init->path, init->u_inf.home_d);
 		init->inp.hist = history_init();
 		init->inp.u_info = init->u_inf;
 		init->inp.buf = NULL;
+		init->jobs = NULL;
 		input_init(&init->inp);
 		init->prs.beg = NULL;
 		init->prs.end = NULL;

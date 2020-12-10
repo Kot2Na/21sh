@@ -39,9 +39,10 @@ static void		close_pipe_fd(t_pipe_list *pipelist)
 }
 
 static void		cod_child(t_exec_lst *execlist, t_pipe_list **pipelist,
-					t_pars_list *list)
+					t_pars_list *list, t_job *jobs)
 {
 	t_pipe_list *buf_pipelist;
+	
 
 	buf_pipelist = ((*pipelist)->prev) ? (*pipelist)->prev : (*pipelist);
 	if (list->f_delimiter & F_PIPE)
@@ -55,7 +56,7 @@ static void		cod_child(t_exec_lst *execlist, t_pipe_list **pipelist,
 	{
 		stream_and_file(execlist, list);
 		dup_fd_and_close(buf_pipelist->pfd[0], STDIN_FILENO);
-		run_cmd(execlist, list);
+		run_cmd(execlist, list, jobs);
 		exit(list->status);
 	}
 	else
@@ -66,7 +67,7 @@ static void		cod_child(t_exec_lst *execlist, t_pipe_list **pipelist,
 }
 
 static void		cod_parent(t_exec_lst *execlist, pid_t pid,
-					t_pipe_list **pipelist, t_pars_list **list)
+					t_pipe_list **pipelist, t_pars_list **list, t_job *jobs)
 {
 	t_pars_list *buf_list;
 
@@ -74,16 +75,18 @@ static void		cod_parent(t_exec_lst *execlist, pid_t pid,
 	if ((buf_list->next) && (buf_list->f_delimiter & F_PIPE))
 	{
 		(*list) = (*list)->next;
-		run_pipe(execlist, pipelist, list);
+		run_pipe(execlist, pipelist, list, jobs);
 	}
+	buf_list->completed = 0;
 	close_all_fd(*pipelist);
 	waitpid(pid, &buf_list->status, WUNTRACED);
+	buf_list->completed = 1;
 	error_system(execlist, buf_list->status);
 	buf_list->pid = pid;
 }
 
 void			run_pipe(t_exec_lst *execlist, t_pipe_list **pipelist,
-					t_pars_list **list)
+					t_pars_list **list, t_job *jobs)
 {
 	pid_t		pid;
 
@@ -92,6 +95,16 @@ void			run_pipe(t_exec_lst *execlist, t_pipe_list **pipelist,
 	if ((pid = fork()) < 0)
 		error_system(execlist, EXEC_ERROR_NUM);
 	if (!pid)
-		cod_child(execlist, pipelist, (*list));
-	cod_parent(execlist, pid, pipelist, list);
+	{
+		jobs->pgid == 0 ? jobs->pgid = pid : 0;
+		setpgid(pid, jobs->pgid);
+		recover_shell_signals();
+		if (!(*list)->foreground)
+		{
+			tcsetpgrp(globs()->g_shell_term, jobs->pgid);
+		}
+		recover_shell_signals();
+		cod_child(execlist, pipelist, (*list), jobs);
+	}
+	cod_parent(execlist, pid, pipelist, list, jobs);
 }

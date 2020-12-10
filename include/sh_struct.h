@@ -87,7 +87,10 @@ typedef struct				s_start_env
 
 struct						s_shell
 {
-	int8_t					shlvl;
+	struct termios			shell_tmode;
+	pid_t					shell_pgid;
+	int						shell_term;
+	int						shell_interac;
 };
 
 /*
@@ -100,6 +103,7 @@ typedef struct				s_term_var
 	pid_t					pid_last;
 	int						ret_child;
 }							t_term_var;
+
 
 /*
 **PARSER
@@ -124,7 +128,6 @@ typedef struct				s_pars_list
 	struct s_pars_list		*next;
 	struct s_pars_list		*prev;
 	pid_t					pid;
-	int						status;
 	unsigned int			f_delimiter;
 	unsigned short			nbr_ampersant;
 	char					*name_func;
@@ -132,11 +135,34 @@ typedef struct				s_pars_list
 	char					**pars_args;
 	char					**str_status;
 	char					**str_lastpid;
+	char					completed;
+	char					stopped;
+	int						status;
+	int						foreground;
 }							t_pars_list;
+
+/*
+** JOBS
+*/
+
+typedef struct				s_job
+{
+	struct s_job			*next;
+	char					*command;
+	t_pars_list				*first_process;
+	pid_t					pgid;
+	struct termios			tmodes;
+	int						job_num;
+	int 					stdinc;
+	int						stdoutc;
+	int						stderrc;
+	int						foreground;
+}							t_job;
 
 /*
 ** EXEC
 */
+
 typedef struct				s_exec_lst
 {
 	t_term_var				sh_term_lst;
@@ -230,6 +256,7 @@ typedef struct				s_init
 	struct s_user_info		u_inf;
 	struct s_shell			shell;
 	struct s_input			inp;
+	t_job					*jobs;
 	t_info_parser			prs;
 	t_exec_lst				execlist;
 }							t_init;

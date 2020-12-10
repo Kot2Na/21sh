@@ -60,7 +60,8 @@ SRC_IU						:=	iu_cd_home_dir.c\
 									sh21_env.c\
 									work_env.c\
 									exit_with_code.c\
-									iu_type.c
+									iu_type.c\
+									globs.c
 
 SRC_HIST					:=	history_init.c\
 									history_fill_flist.c\
@@ -122,12 +123,18 @@ SRC_EXEC					:=	check_choice.c\
 									pars_dollar_env.c\
 									pars_dollar_shift_args.c
 
+SRC_JOB						:=	job_control.c\
+								job_init.c
+
+
+
 SRCS						:=	$(SRC_MAIN)\
 									$(SRC_INIT)\
 									$(SRC_INPUT)\
 									$(SRC_IU)\
 									$(SRC_HIST)\
 									$(SRC_PARSER)\
+									$(SRC_JOB)\
 									$(SRC_EXEC)
 
 OBJS						:=	$(SRCS:.c=.o)
@@ -151,6 +158,7 @@ DIR_ENV						:=	$(DIR_IU)iu_env/
 DIR_HIST					:=	$(DIR_SRC)history/
 DIR_PARSER					:=	$(DIR_SRC)parser/
 
+DIR_JOBS					:=	$(DIR_SRC)jobs/
 DIR_EXEC					:=	$(DIR_SRC)exec/
 
 DIRS_EXEC					:=	$(DIR_EXEC)\
@@ -163,6 +171,7 @@ DIRS_SRC					:=	$(DIR_SRC)\
 									$(DIR_ENV)\
 									$(DIR_HIST)\
 									$(DIR_PARSER)\
+									$(DIR_JOBS)\
 									$(DIRS_EXEC)\
 
 
@@ -173,6 +182,7 @@ MAIN_HEADERS				:=	sh.h\
 									sh_bonus.h\
 									sh_init.h\
 									sh_limits.h\
+									sh_jobs.h\
 									sh_struct.h
 
 INPUT_HEADERS				:=	input_error.h\

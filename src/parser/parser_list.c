@@ -25,6 +25,9 @@ static t_pars_list	*new_elem(void)
 	new->status = 0;
 	new->f_delimiter = 0;
 	new->nbr_ampersant = 0;
+	new->foreground = 1;
+	new->completed = 0;
+	new->stopped = 0;
 	new->name_func = NULL;
 	ft_bzero(new->name_run_func, BUFSIZ);
 	new->pars_args = NULL;
