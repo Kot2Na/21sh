@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 21:55:03 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/12/08 23:08:57 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/10 17:25:07 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@
 # include "input_parse_key.h"
 # include "parser.h"
 # include "exec.h"
+# include "ft_env.h"
 
 #endif
