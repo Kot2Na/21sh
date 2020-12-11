@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_replace_spec.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mozzart <mozzart@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 21:24:36 by mozzart           #+#    #+#             */
-/*   Updated: 2020/10/04 21:26:10 by mozzart          ###   ########.fr       */
+/*   Updated: 2020/12/11 22:41:06 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "ft_env.h"
 
 static char		*replace_vars(char *str, t_env *env)
 {

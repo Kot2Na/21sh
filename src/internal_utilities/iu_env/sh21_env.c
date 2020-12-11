@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   sh21_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksharlen <ksharlen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 15:16:22 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/05/20 22:55:14 by ksharlen         ###   ########.fr       */
+/*   Updated: 2020/12/12 02:54:07 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "internal_utilities.h"
 
-static void		env_init(t_env *env)
+static void		env_init(t_cmd_env *env)
 {
 	env->cmd = NULL;
 	env->opt = 0;
 }
 
-static int		fill_env_opt(char *opts, t_env *env)
+static int		fill_env_opt(char *opts, t_cmd_env *env)
 {
 	size_t	i;
 
@@ -40,7 +40,7 @@ static int		fill_env_opt(char *opts, t_env *env)
 	return (0);
 }
 
-static int		sh_env_getopt(int argc, char **opts, t_env *env)
+static int		sh_env_getopt(int argc, char **opts, t_cmd_env *env)
 {
 	int		i;
 	int		status;
@@ -53,7 +53,7 @@ static int		sh_env_getopt(int argc, char **opts, t_env *env)
 	return (status);
 }
 
-static int		get_opt(int argc, char **opts, t_env *env)
+static int		get_opt(int argc, char **opts, t_cmd_env *env)
 {
 	enum e_err		err;
 
@@ -67,12 +67,11 @@ static int		get_opt(int argc, char **opts, t_env *env)
 }
 
 int				sh21_env(t_exec_lst *execlist, int argc,
-					char **argv, char **env)
+					char **argv)
 {
-	t_env			m_env;
+	t_cmd_env		m_env;
 	enum e_err		err;
 
-	(void)env;
 	err = FAILURE;
 	env_init(&m_env);
 	err = get_opt(argc, argv, &m_env);

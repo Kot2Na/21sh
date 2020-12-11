@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   internal_utilities.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:20:33 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/12/07 13:59:16 by vdaemoni         ###   ########.fr       */
+/*   Updated: 2020/12/12 02:45:40 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ enum			e_find
 	FOUND_EXIT,
 };
 
-typedef unsigned char	t_opts;
 typedef struct s_argv	t_argv;
 
 struct					s_nameval
@@ -79,13 +78,13 @@ struct					s_nameval
 	char	*value;
 };
 
-typedef struct			s_env
+typedef struct			s_cmd_env
 {
 	t_opts		opt;
 	char		*path_exec;
 	char		*cmd;
 	char		**cmd_argv;
-}						t_env;
+}						t_cmd_env;
 
 void					init_env(t_exec_lst *execlist, char **env);
 /*
@@ -99,12 +98,10 @@ int						sh21_unsetenv(t_exec_lst *execlist, const char *name);
 int						sh21_echo(int argc, char **argv, char **env);
 int						sh21_cd(t_exec_lst *execlist, int argc, char **argv,
 							char **env);
-int						sh21_env(t_exec_lst *execlist, int argc, char **argv,
-							char **env);
+int						sh21_env(t_exec_lst *execlist, int argc, char **argv);
 void					work_home_dir(const char *old_path, char *new_path);
-size_t					find_var_env(t_exec_lst *execlist, const char *name);
 void					work_opt(t_exec_lst *execlist, char *const *p_argv,
-							t_env *env);
+							t_cmd_env *env);
 int						exit_with_code(t_pars_list *list);
 int						iu_type(t_exec_lst *execlist, t_pars_list *list);
 
@@ -118,7 +115,5 @@ char *const				*change_value_name(t_exec_lst *execlist,
 struct s_nameval		split_name_val(const char *nameval);
 char					**split_s_key(const char *str);
 void					cd_error(const char *error, const char *filename);
-void					print_env(t_exec_lst *execlist);
-void					clean_env(t_exec_lst *execlist);
 
 #endif

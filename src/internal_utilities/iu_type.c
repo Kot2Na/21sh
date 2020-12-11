@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   iu_type.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdelphia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:41:27 by mdelphia          #+#    #+#             */
-/*   Updated: 2020/04/09 16:13:09 by mdelphia         ###   ########.fr       */
+/*   Updated: 2020/12/12 02:06:51 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,12 @@ static int	check_type_args(t_pars_list *list, char *str_path, char *args)
 
 static int	valid_cmd(t_exec_lst *execlist, t_pars_list *list, char *args)
 {
+	t_env	*env;
+
+	env = execlist->sh_environ;
 	if (write_this_dir(list, args))
 		return (1);
-	else if (check_type_args(list, find_path_param(execlist->sh_environ), args))
+	else if (check_type_args(list, env->get(env, "PATH"), args))
 		return (1);
 	return (0);
 }

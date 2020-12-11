@@ -6,16 +6,16 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 16:55:32 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/12/09 00:40:44 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/12 02:47:17 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh.h"
 
-static void	sh21_finish(char **sh_environ)
+static void	sh21_finish(t_env *sh_environ)
 {
-	ft_strdel_split(sh_environ);
-	free(sh_environ);
+	sh_environ->destroy(sh_environ);
+	sh_environ = NULL;
 }
 
 int			main(int argc, char **argv, char **env)

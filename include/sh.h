@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 21:55:03 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/12/10 17:25:07 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/11 22:23:28 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 # include "libft.h"
 # include "sh_limits.h"
+# include "ft_env.h"
 # include "sh_struct.h"
 # include "sh_init.h"
 # include "internal_utilities.h"
@@ -33,6 +34,5 @@
 # include "input_parse_key.h"
 # include "parser.h"
 # include "exec.h"
-# include "ft_env.h"
 
 #endif

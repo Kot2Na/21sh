@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksharlen <ksharlen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:48:39 by mdelphia          #+#    #+#             */
-/*   Updated: 2020/04/10 21:21:30 by ksharlen         ###   ########.fr       */
+/*   Updated: 2020/12/12 02:44:19 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int				exec_fill_way_for_path(t_exec_lst *execlist, char *str_path,
 void			exec_redirect_heredoc(t_exec_lst *execlist, t_pars_list *list);
 void			insert_dollar_args(t_exec_lst *execlist, t_pars_list *list);
 char			**pars_dollar_shift_args(char **pars_args, int i);
-char			*find_path_param(char **sh_environ);
 void			find_name_path(char *name_path, size_t *i, t_pars_list *list,
 					char *name_func);
 /*

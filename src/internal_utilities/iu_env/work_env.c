@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   work_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksharlen <ksharlen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 22:16:28 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/03/08 22:46:06 by ksharlen         ###   ########.fr       */
+/*   Updated: 2020/12/12 01:55:01 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ struct s_nameval	split_name_val(const char *nameval)
 }
 
 void				work_opt(t_exec_lst *execlist, char *const *p_argv,
-						t_env *env)
+						t_cmd_env *env)
 {
 	if (*p_argv && !ft_strcmp(*p_argv, "-i"))
 	{
-		execlist->sh_environ = (char **)ft_memalloc(sizeof(char *));
-		execlist->sh_environ[0] = NULL;
+		execlist->sh_environ->destroy(execlist->sh_environ);
+		execlist->sh_environ = NULL;
 		++p_argv;
 	}
 	if (p_argv && *p_argv && !ft_strcmp(*p_argv, "-P"))
@@ -43,7 +43,7 @@ void				work_opt(t_exec_lst *execlist, char *const *p_argv,
 		env->path_exec = *p_argv;
 		env->opt |= F_P;
 		if (*p_argv)
-			p_argv++;
+			++p_argv;
 	}
 	if (p_argv && *p_argv)
 		p_argv = change_value_name(execlist, p_argv);

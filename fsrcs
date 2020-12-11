@@ -113,6 +113,7 @@ src/string/ft_count_words_spec.c
 src/string/ft_is_quoted_char.c
 src/string/ft_isspec.c
 src/string/ft_replace_spec.c
+src/string/ft_skip_char.c
 src/string/ft_str_split_spec.c
 src/string/ft_stranychr.c
 src/string/ft_strequ_any.c

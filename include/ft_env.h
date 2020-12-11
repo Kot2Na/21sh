@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 22:20:08 by mozzart           #+#    #+#             */
-/*   Updated: 2020/12/10 17:24:02 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/11 22:44:05 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ t_uc				env_set_value(char **dst, char *ev);
 t_env				*env_new_var(char *ev);
 t_uc				env_print_all(t_env *env);
 t_uc				env_update_last_cmd(char *cmd, t_env **env);
+char				*replace_spec(char *str, t_env *env);
 
 #endif

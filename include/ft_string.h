@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 22:20:08 by mozzart           #+#    #+#             */
-/*   Updated: 2020/12/09 21:53:32 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/12 02:33:38 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,6 @@ int			validate_brakets(char *str, char *o);
 **	I.e. "[]{}()"""
 */
 char		*get_quoted_substring(char *str, char o, char c);
+char		*ft_skip_char(char **str, char c);
 
 #endif

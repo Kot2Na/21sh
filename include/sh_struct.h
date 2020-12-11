@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh_struct.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksharlen <ksharlen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 03:13:25 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/04/07 10:57:35 by ksharlen         ###   ########.fr       */
+/*   Updated: 2020/12/12 02:46:10 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include "libft.h"
 # include "gap_buf.h"
 # include "sh_limits.h"
+# ifndef FT_ENV_H
+#  include "ft_env.h"
+# endif
 
 /*
 ** ENUMS
@@ -140,7 +143,7 @@ typedef struct				s_pars_list
 typedef struct				s_exec_lst
 {
 	t_term_var				sh_term_lst;
-	char					**sh_environ;
+	t_env					*sh_environ;
 	char					path_heredoc[BUFSIZ];
 }							t_exec_lst;
 

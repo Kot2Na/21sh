@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run_cmd.c                                          :+:      :+:    :+:   */
+/*   exec_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdelphia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:56:21 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/04/10 21:10:32 by mdelphia         ###   ########.fr       */
+/*   Updated: 2020/12/12 00:56:52 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,22 +63,24 @@ void		exec_env(t_exec_lst *execlist, t_pars_list *list)
 {
 	char	**cpy_environ_src;
 	int		argc;
+	char	**environ;
 
+	environ = execlist->sh_environ->all(execlist->sh_environ);
+	cpy_environ_src = ft_linedup(environ);
+	free(environ);
 	argc = ft_lineslen(list->pars_args);
-	cpy_environ_src = ft_linedup(execlist->sh_environ);
-	sh21_env(execlist, argc, list->pars_args, NULL);
+	sh21_env(execlist, argc, list->pars_args);
 	list->pars_args = skip_env_flags(list->pars_args, &argc);
 	list->pars_args = skip_env_args(list->pars_args, &argc);
 	if (argc > 0)
 	{
 		list->name_func = list->pars_args[0];
 		check_run(execlist, &list);
-		ft_strdel_split(execlist->sh_environ);
-		free(execlist->sh_environ);
-		execlist->sh_environ = ft_linedup(cpy_environ_src);
+		execlist->sh_environ->destroy(execlist->sh_environ);
+		execlist->sh_environ = env_new(cpy_environ_src);
 	}
 	else
-		print_env(execlist);
+		env_print_all(execlist->sh_environ);
 	ft_strdel_split(cpy_environ_src);
 	free(cpy_environ_src);
 }

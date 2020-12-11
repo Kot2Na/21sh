@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operation_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksharlen <ksharlen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 00:27:17 by ksharlen          #+#    #+#             */
-/*   Updated: 2019/11/10 21:21:47 by ksharlen         ###   ########.fr       */
+/*   Updated: 2020/12/12 02:53:32 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 static void		delete_name(t_exec_lst *execlist, char *const *need_delete)
 {
+	t_env	*env;
+
+	env = execlist->sh_environ;
 	if (need_delete)
 		while (*need_delete)
 			sh21_unsetenv(execlist, *need_delete++);
@@ -47,14 +50,18 @@ static void		change_value(t_exec_lst *execlist, char *const *need_add)
 
 	if (need_add && *need_add)
 	{
-		while (*need_add)
-		{
-			nval = split_name_val(*need_add);
-			sh21_setenv(execlist, nval.name, nval.value, FLAG_ON);
-			ft_strdel(&nval.name);
-			ft_strdel(&nval.value);
-			++need_add;
-		}
+		if (!execlist->sh_environ)
+			execlist->sh_environ = env_new((char**)need_add);
+		else
+			while (*need_add)
+			{
+				nval = split_name_val(*need_add);
+				execlist->sh_environ->add(execlist->sh_environ, nval.name,
+											nval.value);
+				ft_strdel(&nval.name);
+				ft_strdel(&nval.value);
+				++need_add;
+			}
 	}
 }
 
