@@ -1,0 +1,4 @@
+lib/libft/include
+include
+include/input
+include/parser

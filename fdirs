@@ -1,0 +1,17 @@
+src
+src/env
+src/exec
+src/exec/cmd
+src/history
+src/init
+src/input
+src/input/additional_modes
+src/input/bonus
+src/input/greeting
+src/input/heredoc
+src/input/screen
+src/input/termcap
+src/internal_utilities
+src/internal_utilities/iu_env
+src/parser
+src/string
