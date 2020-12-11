@@ -50,7 +50,6 @@ static int	get_line(t_exec_lst *execlist, const char *delimiter, char **line)
 {
 	struct s_input	inp;
 
-	
 	input_init(&inp);
 	inp.greet.mode = MODE_HEREDOC;
 	input_greeting(&inp.greet);

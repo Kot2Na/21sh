@@ -37,7 +37,7 @@ static int	full_spaces_command(char *s)
 
 	i = -1;
 	while (s[++i] == 32)
-		NULL ;
+		NULL;
 	if (s[i])
 		return (0);
 	return (1);
@@ -49,7 +49,8 @@ t_history	*history_fill_history(t_history *hist, char *str)
 	{
 		if (full_spaces_command(str) == 0)
 		{
-			if (!hist->end->prev->comand || ft_strcmp(hist->end->prev->comand, str))
+			if (!hist->end->prev->comand ||
+				ft_strcmp(hist->end->prev->comand, str))
 			{
 				hist = history_add_new_elem(hist, str);
 				ft_printf("%v%zd:", hist->fd, time(NULL));
