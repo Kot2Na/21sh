@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 23:08:43 by mozzart           #+#    #+#             */
-/*   Updated: 2020/12/12 03:04:21 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/12 03:43:57 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_env	*del(t_env *env, char *n)
 	return (env);
 }
 
-static t_uc		add(t_env *env, char *n, char *v)
+static t_uc		add(t_env *env, char *n, char *v, t_uc scope)
 {
 	char	tmp[ENV_MAXLEN];
 	t_uc	res;
@@ -38,14 +38,14 @@ static t_uc		add(t_env *env, char *n, char *v)
 	if (!env || !n)
 		return (res);
 	if (env->next)
-		return (env->add(env->next, n, v));
+		return (env->add(env->next, n, v, scope));
 	ft_strcpy(tmp, n);
 	if (v)
 	{
 		ft_strcat(tmp, "=");
 		ft_strcat(tmp, v);
 	}
-	if ((env->next = env_new_var(tmp)))
+	if ((env->next = env_new_var(tmp, scope)))
 		res = 0;
 	ft_bzero(tmp, ENV_MAXLEN);
 	return (res);
@@ -86,7 +86,7 @@ static char		*get(t_env *env, char *n)
 	return (env->value);
 }
 
-t_env			*env_new_var(char *ev)
+t_env			*env_new_var(char *ev, t_uc scope)
 {
 	t_env	*env;
 
@@ -97,6 +97,7 @@ t_env			*env_new_var(char *ev)
 	env->full_string = ft_strdup(ev);
 	env_set_name(&(env->name), ev);
 	env_set_value(&(env->value), ev);
+	env->scope = scope;
 	env->next = NULL;
 	env->set = set;
 	env->get = get;

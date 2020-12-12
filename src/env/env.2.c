@@ -6,20 +6,21 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 19:25:07 by mozzart           #+#    #+#             */
-/*   Updated: 2020/12/12 03:04:21 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/12 03:32:05 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_env.h"
 
-size_t	env_len(t_env *env)
+size_t	env_len(t_env *env, t_uc scope)
 {
 	size_t len;
 
 	len = env ? 1 : 0;
 	while (len && env->next)
 	{
-		++len;
+		if (scope == V_ALL || env->scope == scope)
+			++len;
 		env = env->next;
 	}
 	return (len);
@@ -30,7 +31,7 @@ char	**env_all(t_env *env)
 	char	**res;
 	size_t	len;
 
-	len = env->len(env);
+	len = env->len(env, V_ENVIR);
 	if (!(res = (char**)malloc(sizeof(char*) * (len + 1))))
 		return (NULL);
 	res[len] = NULL;

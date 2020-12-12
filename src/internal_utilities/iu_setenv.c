@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 18:37:33 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/12/12 02:51:20 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/12 03:44:50 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int				sh21_setenv(t_exec_lst *execlist, const char *name,
 		if (!execlist->sh_environ->set(execlist->sh_environ, (char*)name,
 										(char*)value) ||
 			!execlist->sh_environ->add(execlist->sh_environ, (char*)name,
-										(char*)value))
+										(char*)value, V_ENVIR))
 			err = SUCCESS;
 	}
 	return (err);

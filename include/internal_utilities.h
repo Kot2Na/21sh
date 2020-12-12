@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:20:33 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/12/12 02:45:40 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/12 03:39:42 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int						iu_type(t_exec_lst *execlist, t_pars_list *list);
 char *const				*u_flag(t_exec_lst *execlist, char *const argv[]);
 char					**s_flag(const char *str);
 char *const				*change_value_name(t_exec_lst *execlist,
-							char *const argv[]);
+							char *const argv[], t_uc scope);
 struct s_nameval		split_name_val(const char *nameval);
 char					**split_s_key(const char *str);
 void					cd_error(const char *error, const char *filename);

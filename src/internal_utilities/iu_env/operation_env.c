@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 00:27:17 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/12/12 02:53:32 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/12 03:45:02 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,20 @@ char *const		*u_flag(t_exec_lst *execlist, char *const argv[])
 	return (argv);
 }
 
-static void		change_value(t_exec_lst *execlist, char *const *need_add)
+static void		change_value(t_exec_lst *execlist, char *const *need_add, t_uc scope)
 {
 	struct s_nameval nval;
 
 	if (need_add && *need_add)
 	{
 		if (!execlist->sh_environ)
-			execlist->sh_environ = env_new((char**)need_add);
+			execlist->sh_environ = env_new((char**)need_add, scope);
 		else
 			while (*need_add)
 			{
 				nval = split_name_val(*need_add);
 				execlist->sh_environ->add(execlist->sh_environ, nval.name,
-											nval.value);
+											nval.value, scope);
 				ft_strdel(&nval.name);
 				ft_strdel(&nval.value);
 				++need_add;
@@ -65,7 +65,7 @@ static void		change_value(t_exec_lst *execlist, char *const *need_add)
 	}
 }
 
-char	*const	*change_value_name(t_exec_lst *execlist, char *const argv[])
+char	*const	*change_value_name(t_exec_lst *execlist, char *const argv[], t_uc scope)
 {
 	char	**split;
 
@@ -76,7 +76,7 @@ char	*const	*change_value_name(t_exec_lst *execlist, char *const argv[])
 		if (*argv && ft_strtabchr((char *)*argv, '='))
 		{
 			split = s_flag(*argv);
-			change_value(execlist, split);
+			change_value(execlist, split, scope);
 			ft_strdel_split(split);
 			free(split);
 			split = NULL;
@@ -86,7 +86,7 @@ char	*const	*change_value_name(t_exec_lst *execlist, char *const argv[])
 	{
 		if (*argv && ft_strtabchr(*argv, '='))
 		{
-			change_value(execlist, (char *const *)*&argv);
+			change_value(execlist, (char *const *)*&argv, scope);
 			++argv;
 		}
 	}

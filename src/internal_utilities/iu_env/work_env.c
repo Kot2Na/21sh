@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 22:16:28 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/12/12 01:55:01 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/12 03:40:49 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void				work_opt(t_exec_lst *execlist, char *const *p_argv,
 			++p_argv;
 	}
 	if (p_argv && *p_argv)
-		p_argv = change_value_name(execlist, p_argv);
+		p_argv = change_value_name(execlist, p_argv, V_ENVIR);
 	if (p_argv && *p_argv && !ft_strcmp(*p_argv, "-u"))
 		p_argv = u_flag(execlist, ++p_argv);
 }

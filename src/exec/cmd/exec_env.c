@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:56:21 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/12/12 00:56:52 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/12 03:37:23 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ void		exec_env(t_exec_lst *execlist, t_pars_list *list)
 		list->name_func = list->pars_args[0];
 		check_run(execlist, &list);
 		execlist->sh_environ->destroy(execlist->sh_environ);
-		execlist->sh_environ = env_new(cpy_environ_src);
+		execlist->sh_environ = env_new(cpy_environ_src, V_ENVIR);
 	}
 	else
-		env_print_all(execlist->sh_environ);
+		env_print_all(execlist->sh_environ, V_ENVIR);
 	ft_strdel_split(cpy_environ_src);
 	free(cpy_environ_src);
 }
