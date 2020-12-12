@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 19:25:07 by mozzart           #+#    #+#             */
-/*   Updated: 2020/12/12 03:32:05 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/12 04:11:31 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,13 @@ t_uc	env_set_value(char **dst, char *ev)
 	if (!(*dst = ft_strdup(start + 1)))
 		return (3);
 	return (0);
+}
+
+t_uc	env_export(t_env *env, char *name)
+{
+	if (!env || !name)
+		return (0);
+	if (!ft_strequ(env->name, name))
+		return (env->export(env->next, name));
+	return ((env->scope = V_ENVIR));
 }

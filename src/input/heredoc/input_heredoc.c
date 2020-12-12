@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_heredoc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksharlen <ksharlen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 16:03:00 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/02/06 20:42:44 by ksharlen         ###   ########.fr       */
+/*   Updated: 2020/12/12 04:09:13 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static int	get_line(t_exec_lst *execlist, const char *delimiter, char **line)
 {
 	struct s_input	inp;
 
-	
 	input_init(&inp);
 	inp.greet.mode = MODE_HEREDOC;
 	input_greeting(&inp.greet);

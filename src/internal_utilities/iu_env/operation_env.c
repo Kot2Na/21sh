@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 00:27:17 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/12/12 03:45:02 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/12 04:08:57 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ char *const		*u_flag(t_exec_lst *execlist, char *const argv[])
 	return (argv);
 }
 
-static void		change_value(t_exec_lst *execlist, char *const *need_add, t_uc scope)
+static void		change_value(t_exec_lst *execlist, char *const *need_add,
+								t_uc scope)
 {
 	struct s_nameval nval;
 
@@ -65,7 +66,8 @@ static void		change_value(t_exec_lst *execlist, char *const *need_add, t_uc scop
 	}
 }
 
-char	*const	*change_value_name(t_exec_lst *execlist, char *const argv[], t_uc scope)
+char	*const	*change_value_name(t_exec_lst *execlist, char *const argv[],
+									t_uc scope)
 {
 	char	**split;
 

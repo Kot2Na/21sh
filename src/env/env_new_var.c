@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 23:08:43 by mozzart           #+#    #+#             */
-/*   Updated: 2020/12/12 03:43:57 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/12 03:59:26 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ t_env			*env_new_var(char *ev, t_uc scope)
 	env->del = del;
 	env->all = env_all;
 	env->len = env_len;
+	env->export = env_export;
 	env->destroy = env_destroy;
 	return (env);
 }

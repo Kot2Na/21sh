@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:20:33 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/12/12 03:39:42 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/12 04:06:54 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int						sh21_setenv(t_exec_lst *execlist, const char *name,
 							const char *value, const int replace);
 char					*sh21_getenv(t_exec_lst *execlist, const char *name);
 int						sh21_unsetenv(t_exec_lst *execlist, const char *name);
+int						sh21_export(t_exec_lst *execlist, const char *name);
 int						sh21_echo(int argc, char **argv, char **env);
 int						sh21_cd(t_exec_lst *execlist, int argc, char **argv,
 							char **env);

@@ -78,6 +78,7 @@ src/internal_utilities/iu_echo.c
 src/internal_utilities/iu_env/operation_env.c
 src/internal_utilities/iu_env/sh21_env.c
 src/internal_utilities/iu_env/work_env.c
+src/internal_utilities/iu_export.c
 src/internal_utilities/iu_getenv.c
 src/internal_utilities/iu_init_var_env.c
 src/internal_utilities/iu_pwd.c

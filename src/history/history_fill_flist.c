@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history_fill_flist.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksharlen <ksharlen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 22:55:57 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/03/18 14:09:03 by ksharlen         ###   ########.fr       */
+/*   Updated: 2020/12/12 04:11:05 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	full_spaces_command(char *s)
 
 	i = -1;
 	while (s[++i] == 32)
-		NULL ;
+		;
 	if (s[i])
 		return (0);
 	return (1);
@@ -45,11 +45,14 @@ static int	full_spaces_command(char *s)
 
 t_history	*history_fill_history(t_history *hist, char *str)
 {
+	char	*prev_cmd;
+
+	prev_cmd = hist->end->prev->comand;
 	if (str)
 	{
 		if (full_spaces_command(str) == 0)
 		{
-			if (!hist->end->prev->comand || ft_strcmp(hist->end->prev->comand, str))
+			if (!prev_cmd || ft_strcmp(prev_cmd, str))
 			{
 				hist = history_add_new_elem(hist, str);
 				ft_printf("%v%zd:", hist->fd, time(NULL));

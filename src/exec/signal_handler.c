@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 19:42:09 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/12/09 00:06:19 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/12 04:12:18 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,9 @@ void			handler_child(int sig)
 
 void			sh21_signals(void (*handler)(int))
 {
-	// signal(SIGINT, handler);
-	// signal(SIGQUIT, handler);
 	int sig;
 
 	sig = 0;
 	while (sig++ < SIGUSR2)
 		signal(sig, handler);
-	
 }
