@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_print_all.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mozzart <mozzart@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 17:15:46 by mozzart           #+#    #+#             */
-/*   Updated: 2020/10/04 17:17:35 by mozzart          ###   ########.fr       */
+/*   Updated: 2020/12/12 03:04:21 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_uc		env_print_all(t_env *env)
 {
 	while (env)
 	{
-		ft_printf("%s\n", env->origin);
+		ft_printf("%s\n", env->full_string);
 		env = env->next;
 	}
 	return (0);

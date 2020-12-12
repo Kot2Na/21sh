@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 23:12:40 by mozzart           #+#    #+#             */
-/*   Updated: 2020/12/09 21:56:20 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/12 03:04:21 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	*env_destroy(t_env *env)
 	env->len = NULL;
 	ft_strdel(&env->name);
 	ft_strdel(&env->value);
-	ft_strdel(&env->origin);
-	env->origin = NULL;
+	ft_strdel(&env->full_string);
+	env->full_string = NULL;
 	env->next = env->next ? env->next->destroy(env->next) : NULL;
 	free(env);
 	env = NULL;

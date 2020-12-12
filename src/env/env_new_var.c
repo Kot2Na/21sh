@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_new_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mozzart <mozzart@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 23:08:43 by mozzart           #+#    #+#             */
-/*   Updated: 2020/10/04 23:17:31 by mozzart          ###   ########.fr       */
+/*   Updated: 2020/12/12 03:04:21 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ static t_uc		set(t_env *env, char *n, char *v)
 		if (!(env->value = ft_strdup(v)))
 			return (1);
 	}
-	ft_strdel(&(env->origin));
+	ft_strdel(&(env->full_string));
 	if (!(t = ft_strjoin(n, "=")))
 		return (1);
-	if (!(env->origin = ft_strjoin(t, v)))
+	if (!(env->full_string = ft_strjoin(t, v)))
 		return (1);
 	ft_strdel(&t);
 	return (0);
@@ -94,7 +94,7 @@ t_env			*env_new_var(char *ev)
 		return (NULL);
 	if (!(env = (t_env*)malloc(sizeof(t_env))))
 		return (NULL);
-	env->origin = ft_strdup(ev);
+	env->full_string = ft_strdup(ev);
 	env_set_name(&(env->name), ev);
 	env_set_value(&(env->value), ev);
 	env->next = NULL;

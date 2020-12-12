@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 19:25:07 by mozzart           #+#    #+#             */
-/*   Updated: 2020/12/09 21:56:08 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/12 03:04:21 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	**env_all(t_env *env)
 	len = 0;
 	while (env)
 	{
-		res[len] = env->origin;
+		res[len] = env->full_string;
 		env = env->next;
 		++len;
 	}

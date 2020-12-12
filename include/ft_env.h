@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 22:20:08 by mozzart           #+#    #+#             */
-/*   Updated: 2020/12/11 22:44:05 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/12 03:04:21 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct		s_env
 {
 	char			*name;
 	char			*value;
-	char			*origin;
+	char			*full_string;
 	struct s_env	*next;
 
 	size_t			(*len)(struct s_env*);
