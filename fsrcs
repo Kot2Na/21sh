@@ -81,6 +81,7 @@ src/internal_utilities/iu_env/work_env.c
 src/internal_utilities/iu_export.c
 src/internal_utilities/iu_getenv.c
 src/internal_utilities/iu_init_var_env.c
+src/internal_utilities/iu_name_value.c
 src/internal_utilities/iu_pwd.c
 src/internal_utilities/iu_setenv.c
 src/internal_utilities/iu_type.c

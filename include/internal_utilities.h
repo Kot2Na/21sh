@@ -100,6 +100,7 @@ int						sh21_echo(int argc, char **argv, char **env);
 int						sh21_cd(t_exec_lst *execlist, int argc, char **argv,
 							char **env);
 int						sh21_env(t_exec_lst *execlist, int argc, char **argv);
+int						ft_name_value(t_exec_lst *execlist, t_pars_list *list);
 void					work_home_dir(const char *old_path, char *new_path);
 void					work_opt(t_exec_lst *execlist, char *const *p_argv,
 							t_cmd_env *env);

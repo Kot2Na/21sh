@@ -29,15 +29,27 @@ static int	check_name_cmd(char *name_func)
 		!(ft_strcmp("unsetenv", name_func)) ||
 		!(ft_strcmp("env", name_func)) ||
 		!(ft_strcmp("type", name_func)) ||
-		!(ft_strcmp("exit", name_func)))
+		!(ft_strcmp("exit", name_func)) ||
+		!(ft_strcmp("export", name_func)))
 		return (1);
 	return (0);
+}
+
+int			cmd_name_value(char *s, int i)
+{
+	if (s[i] == '=')
+		return (0);
+	while (s[i] && s[i] != '=')
+		i++;
+	return (s[i] ? 1 : 0);
 }
 
 int			check_cmd(char *name_func)
 {
 	char buf[2];
 
+	if (cmd_name_value(name_func, 0))
+		return (1);
 	write_character(buf, name_func[0]);
 	if (!(ft_strcmp("t", buf)) || !(ft_strcmp("f", buf)) ||
 		!(ft_strcmp("c", buf)) || !(ft_strcmp("e", buf)) ||

@@ -45,5 +45,7 @@ int			run_cmd(t_exec_lst *execlist, t_pars_list *list)
 {
 	if (list->f_delimiter & V_DOLLAR)
 		insert_dollar_args(execlist, list);
+	if (cmd_name_value(list->name_func, 0))
+		return (ft_name_value(execlist, list));
 	return (find_and_run_cmd(execlist, list, 0));
 }

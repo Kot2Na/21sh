@@ -66,6 +66,7 @@ void			find_name_path(char *name_path, size_t *i, t_pars_list *list,
 /*
 ** comands
 */
+int				cmd_name_value(char *s, int i);
 int				check_cmd(char *name_func);
 int				run_cmd(t_exec_lst *execlist, t_pars_list *list);
 void			exec_env(t_exec_lst *execlist, t_pars_list *list);
