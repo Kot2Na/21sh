@@ -12,10 +12,12 @@
 
 #include "internal_utilities.h"
 
-static int	belongs_to_env(char *name)
+static int	belongs_to_env(char *name, t_exec_lst *execlist)
 {
 	if (name && *name)
 	{
+		if (sh21_getenv(execlist, name))
+			return (1);
 		if (!ft_strcmp("TERM_SESSION_ID", name) ||
 		!ft_strcmp("SSH_AUTH_SOCK", name) ||
 		!ft_strcmp("LC_TERMINAL_VERSION", name) ||
@@ -76,12 +78,11 @@ int			ft_name_value(t_exec_lst *execlist, t_pars_list *list)
 
 	name = get_name(list->name_func);
 	value = get_value(list->name_func);
-	if (belongs_to_env(name))
-		ft_printf("setenv name=value\n");
+	if (belongs_to_env(name, execlist))
+		sh21_setenv(execlist, name, value, 1);
 	else
 		ft_printf("set name=value\n");
 	free(name);
 	free(value);
 	return (0);
-	(void)execlist;
 }

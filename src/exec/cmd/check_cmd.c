@@ -25,8 +25,8 @@ static int	check_name_cmd(char *name_func)
 		!(ft_strcmp("cd", name_func)) ||
 		!(ft_strcmp("echo", name_func)) ||
 		!(ft_strcmp("pwd", name_func)) ||
-		!(ft_strcmp("setenv", name_func)) ||
-		!(ft_strcmp("unsetenv", name_func)) ||
+		!(ft_strcmp("set", name_func)) ||
+		!(ft_strcmp("unset", name_func)) ||
 		!(ft_strcmp("env", name_func)) ||
 		!(ft_strcmp("type", name_func)) ||
 		!(ft_strcmp("exit", name_func)) ||
