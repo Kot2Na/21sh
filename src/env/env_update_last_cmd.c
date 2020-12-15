@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 22:27:36 by mozzart           #+#    #+#             */
-/*   Updated: 2020/12/15 04:00:21 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/15 22:06:45 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_uc	env_update_last_cmd(char **cmd, t_env **env)
 	val = cmd;
 	while (*val && ++val)
 		;
-	--val;	
+	--val;
 	if (env && *env)
 	{
 		if ((*env)->set(*env, "_", *val))

@@ -120,6 +120,5 @@ src/string/ft_str_split_spec.c
 src/string/ft_stranychr.c
 src/string/ft_strequ_any.c
 src/string/ft_strjoin_free.c
-src/string/string.2.c
 src/string/string.3.c
 src/string/string.c

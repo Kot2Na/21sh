@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:41:46 by mdelphia          #+#    #+#             */
-/*   Updated: 2020/12/15 04:15:48 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/15 22:04:52 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static int	run_fork(t_exec_lst *execlist, t_pars_list **list)
 	status_child(execlist, (*list)->status, pid, (*list)->name_run_func);
 	execlist->sh_term_lst.pid_last = pid;
 	execlist->sh_term_lst.exec_status = (*list)->status;
-	// env_update_last_cmd((*list)->pars_args, &(execlist->sh_environ));
 	return ((*list)->status);
 }
 
