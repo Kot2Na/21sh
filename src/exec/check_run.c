@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:41:46 by mdelphia          #+#    #+#             */
-/*   Updated: 2020/12/09 01:14:53 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/15 04:15:48 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static int	run_fork(t_exec_lst *execlist, t_pars_list **list)
 	status_child(execlist, (*list)->status, pid, (*list)->name_run_func);
 	execlist->sh_term_lst.pid_last = pid;
 	execlist->sh_term_lst.exec_status = (*list)->status;
+	// env_update_last_cmd((*list)->pars_args, &(execlist->sh_environ));
 	return ((*list)->status);
 }
 
@@ -71,6 +72,7 @@ int			check_run(t_exec_lst *execlist, t_pars_list **list)
 	status = 0;
 	if ((*list)->name_func)
 	{
+		env_update_last_cmd((*list)->pars_args, &(execlist->sh_environ));
 		if ((*list)->f_delimiter & F_PIPE)
 			status = code_pipe(execlist, list);
 		else if (check_cmd((*list)->name_func))

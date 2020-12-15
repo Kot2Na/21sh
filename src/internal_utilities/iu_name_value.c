@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   iu_name_value.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 15:31:10 by vdaemoni          #+#    #+#             */
-/*   Updated: 2020/12/12 15:31:11 by vdaemoni         ###   ########.fr       */
+/*   Updated: 2020/12/15 03:17:02 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int			ft_name_value(t_exec_lst *execlist, t_pars_list *list)
 	if (belongs_to_env(name, execlist))
 		sh21_setenv(execlist, name, value, 1);
 	else
-		ft_printf("set name=value\n");
+		execlist->sh_environ->add(execlist->sh_environ, name, value, V_INTERN);
 	free(name);
 	free(value);
 	return (0);

@@ -6,7 +6,7 @@
 #    By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/04 15:27:16 by tvanessa          #+#    #+#              #
-#    Updated: 2020/12/11 21:27:48 by tvanessa         ###   ########.fr        #
+#    Updated: 2020/12/15 02:53:34 by tvanessa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJSD := $(OBJS)
 
 CC := clang
 GCF := -g3 -Wall -Wextra -Werror
-NAME := 21sh
+NAME := 42sh
 LIBFT := lib/libft
 LIBFTA := $(LIBFT)/libft.a
 CFLAGS := -Wall -Wextra -Werror
