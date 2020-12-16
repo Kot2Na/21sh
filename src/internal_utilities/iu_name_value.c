@@ -48,6 +48,8 @@ static char	*get_name(char *name_func)
 	i = 0;
 	while (name_func[i] && name_func[i] != '=')
 		i++;
+	if (name_func[i] == 0)
+		return (NULL);
 	res = ft_strnew(i + 1);
 	ft_memcpy(res, name_func, i);
 	return (res);
@@ -71,18 +73,38 @@ static char	*get_value(char *name_func)
 	return (res);
 }
 
-int			ft_name_value(t_exec_lst *execlist, t_pars_list *list)
+static void	error_not_found(char *s)
+{
+	ft_putstr_fd(STR_ERR_SHELL, STDERR_FILENO);
+	ft_putstr_fd("command not found: ", STDERR_FILENO);
+	ft_putstr_fd(s, STDERR_FILENO);
+	ft_putchar_fd('\n', STDERR_FILENO);
+}
+
+int			ft_name_value(t_exec_lst *execlist, t_pars_list *list, int i)
 {
 	char	*name;
 	char	*value;
+	int		err;
 
-	name = get_name(list->name_func);
-	value = get_value(list->name_func);
-	if (belongs_to_env(name, execlist))
-		sh21_setenv(execlist, name, value, 1);
-	else
-		execlist->sh_environ->add(execlist->sh_environ, name, value, V_INTERN);
-	free(name);
-	free(value);
-	return (0);
+	err = SUCCESS;
+	while (list->pars_args[++i])
+	{
+		name = get_name(list->pars_args[i]);
+		if (!name)
+		{
+			err = 127;
+			error_not_found(list->pars_args[i]);
+			break ;
+		}
+		value = get_value(list->pars_args[i]);
+		if (belongs_to_env(name, execlist))
+			sh21_setenv(execlist, name, value, 1);
+		else
+			execlist->sh_environ->add(execlist->sh_environ, name, value, \
+					V_INTERN);
+		free(name);
+		free(value);
+	}
+	return (err);
 }
