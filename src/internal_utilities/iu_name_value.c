@@ -12,30 +12,31 @@
 
 #include "internal_utilities.h"
 
+char *g_env_vars[77] = {"ARFLAGS", "IFS", "MAILPATH", "PS1", "CC", "LANG",
+	"MAILRC", "PS2", "CDPATH", "LC_ALL", "MAKEFLAGS", "PS3", "CFLAGS",
+	"LC_COLLATE", "MAKESHELL", "PS4", "CHARSET", "LC_CTYPE", "MANPATH", "PWD",
+	"COLUMNS", "LC_MESSAGES", "MBOX", "RANDOM", "DATEMSK", "LC_MONETARY",
+	"MORE", "SECONDS", "DEAD", "LC_NUMERIC", "MSGVERB", "SHELL", "EDITOR",
+	"LC_TIME", "NLSPATH", "TERM", "ENV", "LDFLAGS", "NPROC", "TERMCAP",
+	"EXINIT", "LEX", "OLDPWD", "TERMINFO", "FC", "LFLAGS", "OPTARG", "TMPDIR",
+	"FCEDIT", "LINENO", "OPTERR", "TZ",
+	"FFLAGS", "LINES", "OPTIND", "USER", "GET", "LISTER", "PAGER", "VISUAL",
+	"GFLAGS", "LOGNAME", "PATH", "YACC", "HISTFILE", "LPDEST", "PPID", "YFLAGS",
+	"HISTORY", "MAIL", "PRINTER", "HISTSIZE", "MAILCHECK", "PROCLANG", "HOME",
+	"MAILER", "PROJECTDIR"};
+
 static int	belongs_to_env(char *name, t_exec_lst *execlist)
 {
+	int i;
+
+	i = -1;
 	if (name && *name)
 	{
 		if (sh21_getenv(execlist, name))
 			return (1);
-		if (!ft_strcmp("TERM_SESSION_ID", name) ||
-		!ft_strcmp("SSH_AUTH_SOCK", name) ||
-		!ft_strcmp("LC_TERMINAL_VERSION", name) ||
-		!ft_strcmp("COLORFGBG", name) || !ft_strcmp("ITERM_PROFILE", name) ||
-		!ft_strcmp("XPC_FLAGS", name) || !ft_strcmp("LANG", name) ||
-		!ft_strcmp("PWD", name) || !ft_strcmp("SHELL", name) ||
-		!ft_strcmp("TERM_PROGRAM_VERSION", name) ||
-		!ft_strcmp("TERM_PROGRAM", name) || !ft_strcmp("PATH", name) ||
-		!ft_strcmp("LC_TERMINAL", name) || !ft_strcmp("COLORTERM", name) ||
-		!ft_strcmp("TERM", name) || !ft_strcmp("HOME", name) ||
-		!ft_strcmp("TMPDIR", name) || !ft_strcmp("USER", name) ||
-		!ft_strcmp("XPC_SERVICE_NAME", name) ||
-		!ft_strcmp("LOGNAME", name) ||
-		!ft_strcmp("ITERM_SESSION_ID", name) ||
-		!ft_strcmp("__CF_USER_TEXT_ENCODING", name) ||
-		!ft_strcmp("SHLVL", name) || !ft_strcmp("OLDPWD", name) ||
-		!ft_strcmp("OLD_PWD", name) || !ft_strcmp("_", name))
-			return (1);
+		while (g_env_vars[++i])
+			if (!ft_strcmp(g_env_vars[i], name))
+				return (1);
 	}
 	return (0);
 }
