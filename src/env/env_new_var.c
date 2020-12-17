@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_new_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mozzart <mozzart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 23:08:43 by mozzart           #+#    #+#             */
-/*   Updated: 2020/12/12 03:59:26 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/17 18:28:08 by mozzart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,16 @@ t_env			*env_new_var(char *ev, t_uc scope)
 {
 	t_env	*env;
 
-	if (!ev || !*ev)
-		return (NULL);
+	// if (!ev || !*ev)
+	// 	return (NULL);
 	if (!(env = (t_env*)malloc(sizeof(t_env))))
 		return (NULL);
-	env->full_string = ft_strdup(ev);
-	env_set_name(&(env->name), ev);
-	env_set_value(&(env->value), ev);
+	if (ev && *ev)
+	{
+		env->full_string = ft_strdup(ev);
+		env_set_name(&(env->name), ev);
+		env_set_value(&(env->value), ev);
+	}
 	env->scope = scope;
 	env->next = NULL;
 	env->set = set;
