@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mozzart <mozzart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 23:12:40 by mozzart           #+#    #+#             */
-/*   Updated: 2020/12/12 03:36:24 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/17 18:45:58 by mozzart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ t_env	*env_new(char **ev, t_uc scope)
 {
 	t_env	*env;
 
-	if (!ev || !*ev || !**ev)
+	// if (!ev || !*ev || !**ev)
+	// 	return (NULL);
+	if (!ev || !*ev)
 		return (NULL);
 	if (!(env = env_new_var(*ev, scope)))
 		return (NULL);
