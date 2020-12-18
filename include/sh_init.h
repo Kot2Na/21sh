@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sh_init.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 03:09:54 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/12/07 14:47:51 by vdaemoni         ###   ########.fr       */
+/*   Updated: 2020/12/18 06:40:10 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 void			sh21_init(t_init *initi, char **env, t_exec_lst *execlist);
 void			sh21_init_start_env(t_exec_lst *execlist,
-					struct s_start_env *env, const struct s_user_info *user);
+					const struct s_user_info *user);
 void			get_struct_for_input(struct s_input *inp, t_init *init);
 
 #endif

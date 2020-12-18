@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_termcap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksharlen <ksharlen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 22:35:41 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/02/16 17:31:58 by ksharlen         ###   ########.fr       */
+/*   Updated: 2020/12/18 06:24:23 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,22 @@
 
 void	input_tgetent(t_exec_lst *execlist)
 {
-	int	ok;
+	int		ok;
+	char	*term;
+	char	*err_msg;
 
-	ok = tgetent(T_BUFFER, sh21_getenv(execlist, "TERM"));
-	if (ok != 1)
-		input_error_ext("termcap for current terminal not found");
+	err_msg = "termcap for current terminal not found";
+	if (!(term = sh21_getenv(execlist, "TERM")))
+	{
+		if ((ok = tgetent(T_BUFFER, "xterm")) < 1)
+			if ((ok = tgetent(T_BUFFER, "screen")) < 1)
+				if ((ok = tgetent(T_BUFFER, "linux")) < 1)
+					if ((ok = tgetent(T_BUFFER, "vt100")) < 1)
+						if ((ok = tgetent(T_BUFFER, "ansi")) < 1)
+							input_error_ext(err_msg);
+	}
+	else if ((ok = tgetent(T_BUFFER, term)) < 1)
+		input_error_ext(err_msg);
 }
 
 char	*input_tgetstr(char *cb)

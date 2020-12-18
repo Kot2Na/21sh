@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_new_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mozzart <mozzart@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 23:08:43 by mozzart           #+#    #+#             */
-/*   Updated: 2020/12/17 18:28:08 by mozzart          ###   ########.fr       */
+/*   Updated: 2020/12/18 06:17:18 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@ static t_uc		set(t_env *env, char *n, char *v)
 
 	if (!env)
 		return (1);
-	if (!ft_strequ(env->name, n))
+	if (env->name && !ft_strequ(env->name, n))
 		return (env->set(env->next, n, v));
-	if ((l = ft_strlen(v)) == ft_strlen(env->value))
+	if (!env->name)
+		env_set_name(&env->name, n);
+	if (env->value && ((l = ft_strlen(v)) == ft_strlen(env->value)))
 		ft_strcpy(env->value, v);
 	else
 	{
@@ -90,16 +92,8 @@ t_env			*env_new_var(char *ev, t_uc scope)
 {
 	t_env	*env;
 
-	// if (!ev || !*ev)
-	// 	return (NULL);
 	if (!(env = (t_env*)malloc(sizeof(t_env))))
 		return (NULL);
-	if (ev && *ev)
-	{
-		env->full_string = ft_strdup(ev);
-		env_set_name(&(env->name), ev);
-		env_set_value(&(env->value), ev);
-	}
 	env->scope = scope;
 	env->next = NULL;
 	env->set = set;
@@ -110,5 +104,14 @@ t_env			*env_new_var(char *ev, t_uc scope)
 	env->len = env_len;
 	env->export = env_export;
 	env->destroy = env_destroy;
+	env->full_string = ev && *ev ? ft_strdup(ev) : NULL;
+	if (!ev || !*ev)
+	{
+		env->name = NULL;
+		env->value = NULL;
+		return (env);
+	}
+	env_set_name(&(env->name), ev);
+	env_set_value(&(env->value), ev);
 	return (env);
 }

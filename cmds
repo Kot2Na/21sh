@@ -1,0 +1,56 @@
+pwd
+ls
+cd
+pwd
+env
+cd -
+pwd
+unset PWD
+cd
+env
+echo $PWD
+cd -
+pwd
+env
+cd 42sh
+pwd
+unset PWD
+env
+cd
+pwd
+cd -
+pwd
+env
+cd 42shj
+cd 42sh
+pwd
+env
+cd
+env
+cd -
+unset PWD
+env
+cd
+env
+cd 42
+env
+foo=bar
+echo $foo
+cd 42shj
+cd 42sh
+env
+unset pwd
+wnv
+env
+unset PWD
+env
+cd
+pwd
+env
+
+
+foo=bar
+[05:39:55]tvanessa(42sh)$>bar=$foo
+[05:39:59]tvanessa(42sh)$>unset PWD
+[05:40:07]tvanessa(42sh)$>set
+[05:40:08]tvanessa(42sh)$>env

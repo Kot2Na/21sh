@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   iu_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksharlen <ksharlen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 18:37:06 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/03/08 23:40:10 by ksharlen         ###   ########.fr       */
+/*   Updated: 2020/12/18 06:37:19 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,22 +118,21 @@ int			sh21_cd(t_exec_lst *execlist, int argc, char **argv, char **env)
 	err = FAILURE;
 	if (argv[0] && argc > 0)
 	{
+		cwd = (char[MAX_SIZE_PATH + 1]){0};
+		getcwd(cwd, MAX_SIZE_PATH);
 		if (argc == 1)
 			err = work_cd(execlist, "");
 		else if (argc > 2)
 			CD_ERR(CD_TOO_MANY, EMPTY_STR);
 		else
 			err = work_cd(execlist, argv[1]);
-		if (err == SUCCESS)
-		{
-			cwd = (char[MAX_SIZE_PATH + 1]){0};
-			getcwd(cwd, MAX_SIZE_PATH);
-			sh21_setenv(execlist, "OLDPWD", sh21_getenv(execlist, "PWD"),
-				FLAG_ON);
-			sh21_setenv(execlist, "PWD", cwd, FLAG_ON);
-		}
-		else
+		if (err == FAILURE)
 			return (1);
+		sh21_setenv(execlist, "OLDPWD", cwd,
+			FLAG_ON);
+		cwd = (char[MAX_SIZE_PATH + 1]){0};
+		getcwd(cwd, MAX_SIZE_PATH);
+		sh21_setenv(execlist, "PWD", cwd, FLAG_ON);
 	}
 	return (0);
 }

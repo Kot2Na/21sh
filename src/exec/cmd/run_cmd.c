@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:56:21 by mdelphia          #+#    #+#             */
-/*   Updated: 2020/12/12 03:58:21 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/18 06:18:58 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ static int	find_and_run_cmd(t_exec_lst *execlist, t_pars_list *list, int argc)
 	else if (!ft_strcmp("pwd", list->name_func))
 		list->status = sh21_pwd(argc, list->pars_args, NULL);
 	else if (!ft_strcmp("set", list->name_func))
-		list->status = sh21_setenv(execlist, list->pars_args[1],
-		list->pars_args[2], 1);
+		env_print_all(execlist->sh_environ, V_ALL);
 	else if (!ft_strcmp("unset", list->name_func))
 		list->status = sh21_unsetenv(execlist, list->pars_args[1]);
 	else if (!ft_strcmp("export", list->name_func))

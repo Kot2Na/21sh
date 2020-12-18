@@ -6,14 +6,16 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 15:31:10 by vdaemoni          #+#    #+#             */
-/*   Updated: 2020/12/15 03:17:02 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/18 06:39:28 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "internal_utilities.h"
 
-char *g_env_vars[77] = {"ARFLAGS", "IFS", "MAILPATH", "PS1", "CC", "LANG",
-	"MAILRC", "PS2", "CDPATH", "LC_ALL", "MAKEFLAGS", "PS3", "CFLAGS",
+#define SH_ENVVARS_SIZE 77
+
+char *g_env_vars[SH_ENVVARS_SIZE] = {"ARFLAGS", "IFS", "MAILPATH", "PS1", "CC",
+	"LANG", "MAILRC", "PS2", "CDPATH", "LC_ALL", "MAKEFLAGS", "PS3", "CFLAGS",
 	"LC_COLLATE", "MAKESHELL", "PS4", "CHARSET", "LC_CTYPE", "MANPATH", "PWD",
 	"COLUMNS", "LC_MESSAGES", "MBOX", "RANDOM", "DATEMSK", "LC_MONETARY",
 	"MORE", "SECONDS", "DEAD", "LC_NUMERIC", "MSGVERB", "SHELL", "EDITOR",
@@ -34,7 +36,7 @@ static int	belongs_to_env(char *name, t_exec_lst *execlist)
 	{
 		if (sh21_getenv(execlist, name))
 			return (1);
-		while (g_env_vars[++i])
+		while (++i < SH_ENVVARS_SIZE)
 			if (!ft_strcmp(g_env_vars[i], name))
 				return (1);
 	}

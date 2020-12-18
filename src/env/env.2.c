@@ -6,7 +6,7 @@
 /*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/18 19:25:07 by mozzart           #+#    #+#             */
-/*   Updated: 2020/12/12 04:11:31 by tvanessa         ###   ########.fr       */
+/*   Updated: 2020/12/18 06:15:57 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ size_t	env_len(t_env *env, t_uc scope)
 {
 	size_t len;
 
-	len = env ? 1 : 0;
-	while (len && env->next)
+	len = 0;
+	while (env)
 	{
 		if (scope == V_ALL || env->scope == scope)
 			++len;
@@ -38,9 +38,9 @@ char	**env_all(t_env *env)
 	len = 0;
 	while (env)
 	{
-		res[len] = env->full_string;
+		if (env->scope == V_ENVIR && (res[len] = env->full_string))
+			++len;
 		env = env->next;
-		++len;
 	}
 	return (res);
 }
@@ -53,7 +53,7 @@ t_uc	env_set_name(char **dst, char *ev)
 		return (1);
 	end = ft_strchr(ev, '=');
 	if (!end || !*end)
-		return (2);
+		end = ev + ft_strlen(ev);
 	if (!(*dst = ft_strndup(ev, end - ev)))
 		return (3);
 	return (0);
