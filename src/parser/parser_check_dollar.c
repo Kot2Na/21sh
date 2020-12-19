@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_check_dollar.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdelphia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:41:27 by mdelphia          #+#    #+#             */
-/*   Updated: 2020/04/09 22:54:20 by mdelphia         ###   ########.fr       */
+/*   Updated: 2020/12/19 17:19:44 by vdaemoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 static int	check_and_fill_flag_dollar(char *str, t_pars_list *list)
 {
 	if (*str == '$' && *(str - 1) != '\\' &&
-		(ft_isalpha(*(str + 1)) || ft_isdigit(*(str + 1))))
+		(ft_isalpha(*(str + 1)) || ft_isdigit(*(str + 1)) ||
+			(*(str + 1) == '}') || (*(str + 1) == '{')))
 	{
 		list->f_delimiter |= V_DOLLAR;
 		return (1);
