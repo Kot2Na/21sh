@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   pars_dollar_env.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdelphia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/07 03:51:19 by mdelphia          #+#    #+#             */
-/*   Updated: 2020/04/10 23:28:30 by mdelphia         ###   ########.fr       */
+/*   Updated: 2020/12/20 18:02:20 by vdaemoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "parser.h"
 
-static char	*search_first_space(char *ptr)
+char		*search_first_space(char *ptr)
 {
 	ptr++;
-	while (*ptr && (ft_isalpha(*ptr) || ft_isdigit(*ptr)))
+	while (*ptr && (ft_isalpha(*ptr) || ft_isdigit(*ptr) || *ptr == '_'))
 		ptr++;
 	return (ptr - 1);
 }
@@ -65,6 +65,15 @@ char		*pars_insert_env_value(t_exec_lst *execlist, char **str)
 	{
 		if (parse_is_quote(*ptr))
 			ptr = parse_next_quote(ptr);
+		if (*ptr == '$' && (*(ptr + 1) == '{' || *(ptr + 1) == '}'))
+		{
+			if (*(ptr + 1) == '}')
+				return (errors_braces(str, "42sh: parse error near `}'\n"));
+			*str = braces_dollar_realloc(execlist, str, ptr);
+			if (*str == NULL)
+				return (NULL);
+			ptr = *str;
+		}
 		if (*ptr == '$' && *(ptr + 1) && (ft_isalpha(*(ptr + 1)) ||
 			ft_isdigit(*(ptr + 1))))
 		{
