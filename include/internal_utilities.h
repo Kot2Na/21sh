@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   internal_utilities.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mnidokin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:20:33 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/12/07 13:59:16 by vdaemoni         ###   ########.fr       */
+/*   Updated: 2020/12/22 13:58:00 by mnidokin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,14 @@ enum			e_find
 typedef unsigned char	t_opts;
 typedef struct s_argv	t_argv;
 
+typedef	int				(*t_test_builtin)(char **);
+
+typedef struct			s_test_formula_discr
+{
+	t_test_builtin		formula;
+	char				*name;
+}						t_test_formula_discr;
+
 struct					s_nameval
 {
 	char	*name;
@@ -120,5 +128,60 @@ char					**split_s_key(const char *str);
 void					cd_error(const char *error, const char *filename);
 void					print_env(t_exec_lst *execlist);
 void					clean_env(t_exec_lst *execlist);
+
+/*
+** ui_test.c
+*/
+
+int						iu_test(char **cmd);
+int						iu_test_cmd_hadler(int param_num, char **cmd);
+int						iu_test_non_operand(char **cmd);
+int						iu_test_operand_n_file(char **cmd);
+int						iu_test_file_operand_file(char **cmd);
+t_test_builtin			iu_test_get_formula_compare_operand(char *str);
+t_test_builtin			iu_test_get_formula_single_operand(char *str);
+
+/*
+** ui_test_aux.c
+*/
+
+char					ft_file_objtype(char *str);
+
+/*
+** ui_test_form_single.c
+*/
+
+int						iu_test_b(char **cmd);
+int						iu_test_c(char **cmd);
+int						iu_test_d(char **cmd);
+int						iu_test_e(char **cmd);
+int						iu_test_f(char **cmd);
+int						iu_test_g(char **cmd);
+int						iu_test_cap_g(char **cmd);
+int						iu_test_h_and_cap_l(char **cmd);
+int						iu_test_k(char **cmd);
+int						iu_test_cap_o(char **cmd);
+int						iu_test_p(char **cmd);
+int						iu_test_r(char **cmd);
+int						iu_test_s(char **cmd);
+int						iu_test_t(char **cmd);
+int						iu_test_u(char **cmd);
+int						iu_test_w(char **cmd);
+int						iu_test_x(char **cmd);
+
+/*
+** ui_test_form_compare.c
+*/
+
+int						iu_test_equality(char **cmd);
+int						iu_test_not_equality(char **cmd);
+int						iu_test_eq(char **cmd);
+int						iu_test_ge(char **cmd);
+int						iu_test_gt(char **cmd);
+int						iu_test_lt(char **cmd);
+int						iu_test_ne(char **cmd);
+int						iu_test_ef(char **cmd);
+int						iu_test_nt(char **cmd);
+int						iu_test_ot(char **cmd);
 
 #endif

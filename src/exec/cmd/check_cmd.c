@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdelphia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mnidokin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:52:25 by mdelphia          #+#    #+#             */
-/*   Updated: 2020/04/07 14:28:38 by mdelphia         ###   ########.fr       */
+/*   Updated: 2020/12/22 14:14:03 by mnidokin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static int	check_name_cmd(char *name_func)
 		!(ft_strcmp("unsetenv", name_func)) ||
 		!(ft_strcmp("env", name_func)) ||
 		!(ft_strcmp("type", name_func)) ||
-		!(ft_strcmp("exit", name_func)))
+		!(ft_strcmp("exit", name_func)) ||
+		!(ft_strcmp("test", name_func)))
 		return (1);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mnidokin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:56:21 by mdelphia          #+#    #+#             */
-/*   Updated: 2020/12/07 16:10:33 by vdaemoni         ###   ########.fr       */
+/*   Updated: 2020/12/22 14:18:57 by mnidokin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,19 @@ static int	find_and_run_cmd(t_exec_lst *execlist, t_pars_list *list, int argc)
 		list->status = iu_type(execlist, list);
 	else if (!ft_strcmp("env", list->name_func))
 		exec_env(execlist, list);
+	else if (!ft_strcmp("test", list->name_func))
+	{
+		list->status = iu_test(list->pars_args);
+		ft_putstr(COLOR_USER);
+		ft_putstr("test return = ");
+		ft_putstr(FT_COLOR_GREEN);
+		if (list->status == EXIT_SUCCESS)
+			ft_putstr("ok");
+		else
+			ft_putstr("wrong");
+		ft_putstr(COLOR_DFLT);
+		ft_putendl("");
+	}
 	return (execlist->sh_term_lst.exec_status = list->status);
 }
 

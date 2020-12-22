@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+         #
+#    By: mnidokin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/16 21:51:15 by student           #+#    #+#              #
-#    Updated: 2020/12/07 16:44:08 by vdaemoni         ###   ########.fr        #
+#    Updated: 2020/12/22 13:55:23 by mnidokin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,11 @@ SRC_IU						:=	iu_cd_home_dir.c\
 									sh21_env.c\
 									work_env.c\
 									exit_with_code.c\
-									iu_type.c
+									iu_type.c\
+									iu_test.c\
+									iu_test_aux.c\
+									iu_test_form_single.c\
+									iu_test_form_compare.c
 
 SRC_HIST					:=	history_init.c\
 									history_fill_flist.c\
@@ -148,6 +152,9 @@ DIR_IU						:=	$(DIR_SRC)internal_utilities/
 
 DIR_ENV						:=	$(DIR_IU)iu_env/
 
+DIR_TEST					:=	$(DIR_IU)iu_test/
+DIR_TEST_FORMS				:=	$(DIR_TEST)iu_test_forms/
+
 DIR_HIST					:=	$(DIR_SRC)history/
 DIR_PARSER					:=	$(DIR_SRC)parser/
 
@@ -160,6 +167,8 @@ DIRS_SRC					:=	$(DIR_SRC)\
 									$(DIR_INIT)\
 									$(DIRS_INPUT)\
 									$(DIR_IU)\
+									$(DIR_TEST)\
+									$(DIR_TEST_FORMS)\
 									$(DIR_ENV)\
 									$(DIR_HIST)\
 									$(DIR_PARSER)\

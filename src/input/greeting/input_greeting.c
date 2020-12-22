@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_greeting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksharlen <ksharlen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mnidokin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 02:55:39 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/04/30 01:49:32 by ksharlen         ###   ########.fr       */
+/*   Updated: 2020/12/22 14:09:43 by mnidokin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,17 @@ static int		input_dflt_greeting(t_greet *greet)
 	ret_num_sym = 0;
 	ft_putstr(COLOR_TIME);
 	ret_num_sym += ft_printf("[%s]", greet->time);
+	ft_putchar(' ');
 	ft_putstr(COLOR_USER);
 	ret_num_sym += ft_printf("%s", greet->user);
+	ft_putchar(' ');
 	ft_putstr(COLOR_DIR);
 	ret_num_sym += ft_printf("(%s)", greet->curr_d);
-	ft_putstr(COLOR_DFLT);
+	ft_putchar(' ');
+	ft_putstr(COLOR_YELLOW);
 	ret_num_sym += ft_printf("$>");
+	ft_putchar(' ');
+	ft_putstr(COLOR_DFLT);
 	return (ret_num_sym);
 }
 
