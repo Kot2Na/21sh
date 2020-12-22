@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   internal_utilities.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:20:33 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/12/07 13:59:16 by vdaemoni         ###   ########.fr       */
+/*   Updated: 2020/12/23 08:24:16 by tvanessa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,14 @@
 # define F_I			2
 # define F_U 			4
 # define F_S 			8
+# define POSIX_OPTIONS	get_posix_options()
+# define FLAG_BIT(f)	ft_get_flags((char *const*)&f, 1, (char*)POSIX_OPTIONS, FALSE)
+# define UP_FLAG		FLAG_BIT("-P")
+# define UL_FLAG		FLAG_BIT("-L")
+# define L_FLAG			FLAG_BIT("-l")
+# define P_FLAG			FLAG_BIT("-p")
+# define A_FLAG			FLAG_BIT("-a")
+# define R_FLAG			FLAG_BIT("-r")
 
 /*
 **ECHO
@@ -120,5 +128,7 @@ char					**split_s_key(const char *str);
 void					cd_error(const char *error, const char *filename);
 void					print_env(t_exec_lst *execlist);
 void					clean_env(t_exec_lst *execlist);
+int64_t					ft_get_flags(char *const *argv, int argc, char *flags, int8_t with_args_flag);
+const char				*get_posix_options(void);
 
 #endif

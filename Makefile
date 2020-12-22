@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+         #
+#    By: tvanessa <tvanessa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/16 21:51:15 by student           #+#    #+#              #
-#    Updated: 2020/12/07 16:44:08 by vdaemoni         ###   ########.fr        #
+#    Updated: 2020/12/23 08:22:20 by tvanessa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,9 @@ SRC_IU						:=	iu_cd_home_dir.c\
 									sh21_env.c\
 									work_env.c\
 									exit_with_code.c\
-									iu_type.c
+									iu_type.c\
+									iu_get_flags.c\
+									iu_get_posix_options.c
 
 SRC_HIST					:=	history_init.c\
 									history_fill_flist.c\
@@ -216,7 +218,7 @@ REMOVE						:=	rm -rf
 MAKE_LIBFT					:=	make -C $(DIR_LIBFT)
 MAKE_CLEAN_LIBFT			:=	make -C $(DIR_LIBFT) clean
 MAKE_FCLEAN_LIBFT			:=	make -C $(DIR_LIBFT) fclean
-CC							:=	gcc
+CC							:=	clang
 
 vpath	%.c	$(DIRS_SRC)
 vpath	%.o	$(DIR_OBJ)
