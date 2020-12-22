@@ -13,11 +13,11 @@
 #include "exec.h"
 #include "parser.h"
 
-char		*errors_braces(char **str, char *err_msg)
+int			errors_braces(char *err_msg)
 {
+	g_exit_status = 1;
 	ft_putstr_fd(err_msg, STDERR_FILENO);
-	free(*str);
-	return (NULL);
+	return (1);
 }
 
 char		*braces_dollar_realloc(t_exec_lst *execlist, char **str,
@@ -30,8 +30,6 @@ char		*braces_dollar_realloc(t_exec_lst *execlist, char **str,
 
 	end_env = search_first_space(ptr + 1);
 	end_env++;
-	if (*end_env != '}')
-		return (errors_braces(str, "42sh: bad substitution\n"));
 	env_name = ft_memalloc(end_env - ptr);
 	ft_strncpy(env_name, ptr + 2, end_env - ptr - 2);
 	len = sh21_getenv(execlist, env_name) ?

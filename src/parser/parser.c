@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksharlen <ksharlen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vdaemoni <vdaemoni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 13:55:30 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/03/10 22:45:41 by ksharlen         ###   ########.fr       */
+/*   Updated: 2020/12/22 17:44:25 by vdaemoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,15 @@ static int		check_str(const char *str, char *splitter)
 	return (qty_sym ? TRUE : FALSE);
 }
 
-static int		fill_struct(char *str_start, t_info_parser *prs, char *splitter)
+static int		fill_struct(char *str_start, t_info_parser *prs, char *splitter,
+							char *str)
 {
 	size_t	qty_args;
-	char	*str;
 	char	*check_pos;
 
 	str = str_start;
-	parser_check_dollar(str, prs->end, splitter);
+	if (parser_check_dollar(str, prs->end, splitter))
+		return (1);
 	while (*str && str != splitter)
 	{
 		str = ft_skiptabs(str);
@@ -81,7 +82,7 @@ static int		parse_str(t_exec_lst *execlist, char **str_for_parse,
 			str = (*splitter) ? ++splitter : splitter;
 			continue;
 		}
-		if (fill_struct(str, prs, splitter))
+		if (fill_struct(str, prs, splitter, NULL))
 			return (1);
 		str = skip_splitter(splitter, &prs->end->f_delimiter);
 	}

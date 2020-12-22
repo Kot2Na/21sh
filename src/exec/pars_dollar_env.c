@@ -56,10 +56,8 @@ static int	search_dollar(char *str)
 	return (0);
 }
 
-char		*pars_insert_env_value(t_exec_lst *execlist, char **str)
+static char	*pars_insert_env_value(t_exec_lst *execlist, char **str, char *ptr)
 {
-	char	*ptr;
-
 	ptr = *str;
 	while (search_dollar(*str) && *ptr)
 	{
@@ -67,11 +65,7 @@ char		*pars_insert_env_value(t_exec_lst *execlist, char **str)
 			ptr = parse_next_quote(ptr);
 		if (*ptr == '$' && (*(ptr + 1) == '{' || *(ptr + 1) == '}'))
 		{
-			if (*(ptr + 1) == '}')
-				return (errors_braces(str, "42sh: parse error near `}'\n"));
 			*str = braces_dollar_realloc(execlist, str, ptr);
-			if (*str == NULL)
-				return (NULL);
 			ptr = *str;
 		}
 		if (*ptr == '$' && *(ptr + 1) && (ft_isalpha(*(ptr + 1)) ||
@@ -101,7 +95,7 @@ void		insert_dollar_args(t_exec_lst *execlist, t_pars_list *list)
 	ptr = list->pars_args;
 	while (*ptr)
 	{
-		if ((new_line = pars_insert_env_value(execlist, ptr)))
+		if ((new_line = pars_insert_env_value(execlist, ptr, NULL)))
 		{
 			list->pars_args[i] = new_line;
 			ptr++;

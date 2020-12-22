@@ -61,7 +61,7 @@ void			parser_check_ampersand(char *splitter, t_pars_list *list);
 void			write_flag_and_nbr_ampersand(t_pars_list *list);
 size_t			parser_get_count_args_heredoc(t_pars_list *list,
 					size_t count_args);
-void			parser_check_dollar(char *str, t_pars_list *list,
+int				parser_check_dollar(char *str, t_pars_list *list,
 					char *splitter);
 
 #endif
