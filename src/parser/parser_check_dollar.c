@@ -16,7 +16,8 @@ static int	check_and_fill_flag_dollar(char *str, t_pars_list *list)
 {
 	if (*str == '$' && *(str - 1) != '\\' &&
 		(ft_isalpha(*(str + 1)) || ft_isdigit(*(str + 1)) ||
-			(*(str + 1) == '}') || (*(str + 1) == '{')))
+			(*(str + 1) == '}') || (*(str + 1) == '{') ||
+			(*(str + 1) == '?') || (*(str + 1) == '_')))
 	{
 		list->f_delimiter |= V_DOLLAR;
 		return (1);

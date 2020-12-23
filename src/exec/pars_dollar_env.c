@@ -16,7 +16,8 @@
 char		*search_first_space(char *ptr)
 {
 	ptr++;
-	while (*ptr && (ft_isalpha(*ptr) || ft_isdigit(*ptr) || *ptr == '_'))
+	while (*ptr && (ft_isalpha(*ptr) || ft_isdigit(*ptr) || *ptr == '_' ||
+				*ptr == '?'))
 		ptr++;
 	return (ptr - 1);
 }
@@ -69,7 +70,7 @@ static char	*pars_insert_env_value(t_exec_lst *execlist, char **str, char *ptr)
 			ptr = *str;
 		}
 		if (*ptr == '$' && *(ptr + 1) && (ft_isalpha(*(ptr + 1)) ||
-			ft_isdigit(*(ptr + 1))))
+			ft_isdigit(*(ptr + 1)) || *(ptr + 1) == '?' || *(ptr + 1) == '_'))
 		{
 			*str = dollar_realloc(execlist, str, ptr);
 			ptr = *str;
