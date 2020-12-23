@@ -63,6 +63,8 @@ void			insert_dollar_args(t_exec_lst *execlist, t_pars_list *list);
 char			*search_first_space(char *ptr);
 char			*braces_dollar_realloc(t_exec_lst *execlist, char **str,
 									char *ptr);
+char			*exit_status_realloc(char **str, char *ptr, int braces);
+char			*dollar_realloc(t_exec_lst *execlist, char **str, char *ptr);
 int				errors_braces(char *err_msg);
 char			**pars_dollar_shift_args(char **pars_args, int i);
 void			find_name_path(char *name_path, size_t *i, t_pars_list *list,

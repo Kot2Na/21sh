@@ -42,6 +42,7 @@ void		run_exec(int fd, t_pars_list *list, t_exec_lst *execlist)
 	env = execlist->sh_environ->all(execlist->sh_environ);
 	if (list->f_delimiter & V_DOLLAR)
 		insert_dollar_args(execlist, list);
+	env_update_last_cmd(list->pars_args, &(execlist->sh_environ));
 	if (fd > -1)
 		dup_fd_and_close(fd, STDIN_FILENO);
 	if (execve(list->name_run_func, list->pars_args, env))

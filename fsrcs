@@ -23,8 +23,8 @@ src/exec/free_pars_list.c
 src/exec/free_pipe_list.c
 src/exec/new_or_open_file.c
 src/exec/new_pipe_list.c
-src/exec/pars_dollar_braces.c
 src/exec/pars_dollar_env.c
+src/exec/pars_dollar_realloc.c
 src/exec/pars_dollar_shift_args.c
 src/exec/redirect_stream.c
 src/exec/run_ampersant.c

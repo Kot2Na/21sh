@@ -71,7 +71,6 @@ int			check_run(t_exec_lst *execlist, t_pars_list **list)
 	status = 0;
 	if ((*list)->name_func)
 	{
-		env_update_last_cmd((*list)->pars_args, &(execlist->sh_environ));
 		if ((*list)->f_delimiter & F_PIPE)
 			status = code_pipe(execlist, list);
 		else if (check_cmd((*list)->name_func))
