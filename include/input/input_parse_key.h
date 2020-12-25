@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_parse_key.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksharlen <ksharlen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mnidokin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 18:38:23 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/03/29 18:54:18 by ksharlen         ###   ########.fr       */
+/*   Updated: 2020/12/25 17:32:05 by mnidokin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,7 @@ void			input_quote_mode(t_exec_lst *execlist, struct s_input *inp);
 void			clean_struct_input(struct s_input *inp);
 void			input_preparation(t_exec_lst *execlist, struct s_input *inp);
 char			*input_heredoc(t_exec_lst *execlist, char *delimeter);
+
+int	ft_search_backslash(char **str);
 
 #endif

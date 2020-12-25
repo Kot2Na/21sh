@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_quote.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksharlen <ksharlen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mnidokin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 16:11:15 by ksharlen          #+#    #+#             */
-/*   Updated: 2020/02/16 17:46:25 by ksharlen         ###   ########.fr       */
+/*   Updated: 2020/12/25 17:35:16 by mnidokin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,27 @@ static void	quote_init(struct s_input *inp)
 static char	line_form(struct s_input *inp, char search_qt, char *src_str)
 {
 	char		*str;
+	char		new_line;
 	char		close_qt;
 	t_queue		qu;
 
+	new_line = '\n';
 	ft_qu_init(&qu);
 	ft_qu_push(&qu, &search_qt, sizeof(char));
 	str = gap_get_buf(&inp->gap);
 	if (str)
 	{
+		if (inp->greet.mode == '\"')
+		{
+			if (!(ft_search_backslash(&src_str) == EXIT_SUCCESS || ft_search_backslash(&str) == EXIT_SUCCESS))
+			{
+				ft_strncat(src_str, &new_line, 1);
+			}
+		}
+		else if (((ft_search_backslash(&src_str) == EXIT_FAILURE || ft_search_backslash(&str) == EXIT_FAILURE)))
+		{
+			ft_strncat(src_str, &new_line, 1);
+		}
 		put_in_stack_quote_from_str(str, &qu);
 		inp->str_for_parse = ft_strreplace(src_str, str);
 		close_qt = search_double_quotes(&qu);
@@ -90,4 +103,21 @@ void		input_quote_mode(t_exec_lst *execlist, struct s_input *inp)
 		inp->greet.mode = quote_close;
 		quote_mode(execlist, inp, quote_close, inp->str_for_parse);
 	}
+}
+
+int	ft_search_backslash(char **str)
+{
+	int	index;
+
+	index = 0;
+	while ((*str)[index])
+	{
+		index++;
+	}
+	if ((*str)[index - 1] == '\\')
+	{
+		(*str)[index - 1] = '\0';
+		return (EXIT_SUCCESS);
+	}
+	return (EXIT_FAILURE);
 }
