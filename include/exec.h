@@ -48,6 +48,7 @@ t_pipe_list		*new_pipe_list(t_exec_lst *execlist, t_pipe_list *pipelist);
 void			free_pipe_list(t_pipe_list *pipelist);
 int				stream_close_fd(t_red_stream *stream_list);
 void			error_system(t_exec_lst *execlist, int status);
+int				wr_to_stderr(char *msg1, char *msg2, char *msg3);
 void			stream_save_std(t_red_stream *stream_list);
 void			close_and_open_std(t_exec_lst *execlist,
 					t_red_stream *stream_list);

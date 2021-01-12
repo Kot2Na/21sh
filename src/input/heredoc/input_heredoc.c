@@ -54,7 +54,7 @@ static int	get_line(t_exec_lst *execlist, const char *delimiter, char **line)
 	inp.greet.mode = MODE_HEREDOC;
 	input_greeting(&inp.greet);
 	input_preparation(execlist, &inp);
-	inp.hist = history_init();
+	inp.hist = history_init(execlist);
 	while (1)
 	{
 		inp.key = input_getch(execlist, &inp);

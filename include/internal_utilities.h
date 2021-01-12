@@ -107,6 +107,18 @@ void					work_opt(t_exec_lst *execlist, char *const *p_argv,
 							t_cmd_env *env);
 int						exit_with_code(t_pars_list *list);
 int						iu_type(t_exec_lst *execlist, t_pars_list *list);
+int						iu_fc(t_exec_lst *execlist, t_pars_list *list);
+
+/*
+**ALIASES
+*/
+int						iu_unalias(t_exec_lst *execlist, t_pars_list *list);
+int						iu_alias(t_exec_lst *execlist, t_pars_list *list);
+char					*get_alias_value(char *name, size_t n);
+void					add_to_g_alias(char *name, char *value, size_t n,
+							size_t v);
+void					free_alias_elem(t_aliases *elem);
+int						free_all_aliases(void);
 
 /*
 **WORK_FLAGS

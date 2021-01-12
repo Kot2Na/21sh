@@ -60,6 +60,7 @@ static void	init_globals(void)
 {
 	g_exit_status = 0;
 	g_sig_status = 0;
+	g_aliases = NULL;
 }
 
 void		sh21_init(t_init *init, char **env, t_exec_lst *execlist)
@@ -72,7 +73,7 @@ void		sh21_init(t_init *init, char **env, t_exec_lst *execlist)
 		init_env(execlist, env);
 		sh21_init_start_env(&init->execlist, &init->u_inf);
 		init_path(&init->path, init->u_inf.home_d);
-		init->inp.hist = history_init();
+		init->inp.hist = history_init(execlist);
 		init->inp.u_info = init->u_inf;
 		init->inp.buf = NULL;
 		input_init(&init->inp);

@@ -82,6 +82,6 @@ fclean: clean
 
 re: fclean all
 
-# .SILENT: all $(NAME) $(OBJSD) $(LIBFT) clean fclean re
+.SILENT: all $(NAME) $(OBJSD) $(LIBFT) clean fclean re
 
 .PHONY: clean $(LIBFT) all

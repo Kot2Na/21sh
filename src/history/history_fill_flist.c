@@ -23,7 +23,7 @@ t_history	*history_add_new_elem(t_history *hist, char *str)
 	tmp->prev = hist->h_list;
 	tmp->location = hist->h_list->location + 1;
 	if (str)
-		hist->h_list->comand = ft_strdup(ft_strrchrback(str, ':'));
+		hist->h_list->comand = ft_strdup(str);
 	tmp->comand = NULL;
 	hist->h_list = tmp;
 	hist->end = tmp;
@@ -50,12 +50,14 @@ t_history	*history_fill_history(t_history *hist, char *str)
 	prev_cmd = hist->end->prev->comand;
 	if (str)
 	{
+		// if (ft_strchr(str, '!'))
+		// 	str = realloc_with_exclamation_mark(str, hist);
 		if (full_spaces_command(str) == 0)
 		{
 			if (!prev_cmd || ft_strcmp(prev_cmd, str))
 			{
 				hist = history_add_new_elem(hist, str);
-				ft_printf("%v%zd:", hist->fd, time(NULL));
+				// ft_printf("%v%zd:", hist->fd, time(NULL));
 				ft_printf("%v%s\n", hist->fd, hist->h_list->prev->comand);
 			}
 		}

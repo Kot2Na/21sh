@@ -35,8 +35,14 @@ static int	find_and_run_cmd(t_exec_lst *execlist, t_pars_list *list, int argc)
 		list->status = exit_with_code(list);
 	else if (!ft_strcmp("type", list->name_func))
 		list->status = iu_type(execlist, list);
+	else if (!ft_strcmp("alias", list->name_func))
+		list->status = iu_alias(execlist, list);
+	else if (!ft_strcmp("unalias", list->name_func))
+		list->status = iu_unalias(execlist, list);
 	else if (!ft_strcmp("env", list->name_func))
 		exec_env(execlist, list);
+	else if (!ft_strcmp("fc", list->name_func))
+		list->status = iu_fc(execlist, list);
 	return (execlist->sh_term_lst.exec_status = list->status);
 }
 

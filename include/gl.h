@@ -15,9 +15,17 @@
 
 # include "sh.h"
 
-int	g_exit_status;
-int g_sig_status;
-int	g_pid;
-t_init *g_init;
+typedef struct			s_aliases
+{
+	char				*name;
+	char				*value;
+	struct s_aliases	*next;
+}						t_aliases;
+
+int						g_exit_status;
+int						g_sig_status;
+int						g_pid;
+t_init					*g_init;
+t_aliases				*g_aliases;
 
 #endif

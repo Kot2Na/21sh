@@ -35,6 +35,7 @@ src/exec/stream_and_file.c
 src/exec/stream_close_fd.c
 src/exec/stream_save_std.c
 src/exec/write_this_dir.c
+src/history/exclamation_mark_realloc.c
 src/history/history_del.c
 src/history/history_fill_flist.c
 src/history/history_find_history.c
@@ -73,6 +74,7 @@ src/input/termcap/input_common.c
 src/input/termcap/input_cursor_pos.c
 src/input/termcap/input_termcap.c
 src/internal_utilities/exit_with_code.c
+src/internal_utilities/iu_alias.c
 src/internal_utilities/iu_cd.c
 src/internal_utilities/iu_cd_home_dir.c
 src/internal_utilities/iu_echo.c
@@ -80,12 +82,14 @@ src/internal_utilities/iu_env/operation_env.c
 src/internal_utilities/iu_env/sh21_env.c
 src/internal_utilities/iu_env/work_env.c
 src/internal_utilities/iu_export.c
+src/internal_utilities/iu_fc.c
 src/internal_utilities/iu_getenv.c
 src/internal_utilities/iu_init_var_env.c
 src/internal_utilities/iu_name_value.c
 src/internal_utilities/iu_pwd.c
 src/internal_utilities/iu_setenv.c
 src/internal_utilities/iu_type.c
+src/internal_utilities/iu_unalias.c
 src/internal_utilities/iu_unsetenv.c
 src/main.c
 src/parser/ft_checkspase.c
