@@ -1,5 +1,19 @@
 # include "sh_jobs.h"
 
+int get_ground_status(t_pars_list *list)
+{
+    int status;
+
+    status = 0;
+    if (list)
+    {
+        while (list->next)
+            list = list->next;
+        status = list->foreground;
+    }
+    return (status);
+}
+
 int job_set_num(t_job *jobs)
 {
     int result;
@@ -25,6 +39,7 @@ t_job   *job_create(char *line, t_pars_list *list)
         new_job = (t_job *)malloc(sizeof(t_job));
         new_job->next = NULL;
         new_job->command = ft_strdup(line);
+        new_job->foreground = get_ground_status(list);
         new_job->first_process = list;
         new_job->pgid = -1;
         new_job->stdinc = 0;
@@ -155,9 +170,10 @@ int sh42_jobs(t_job *jobs)
     return 0;
 }
 
+/*
 void        set_status(t_job *jobs, t_pars_list *p, int status)
 {
-    
+
 }
 
 int         job_set_procces_status(t_job *job, pid_t pid, int status)
@@ -186,6 +202,7 @@ int         job_set_procces_status(t_job *job, pid_t pid, int status)
 		return (-1);
 	return (-1);
 }
+*/
 
 
 void        job_wait(t_job *job)
@@ -199,6 +216,6 @@ void        job_wait(t_job *job)
 		if (job_is_stopped(job))
 			break ;
 		pid = waitpid(-job->pgid, &status, WUNTRACED | WNOHANG);
-		 (pid, status, job);
+        //mark status
 	}
 }

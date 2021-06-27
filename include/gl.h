@@ -20,12 +20,13 @@ int				g_sig_status;
 int				g_pid;
 t_init			*g_init;
 
-typedef struct  s_globs
+typedef struct  	s_globs
 {
-	pid_t       g_shell_pgid;
-	int         g_shell_term;
-	int         g_shell_interac;
-	t_job		*g_first_job;
-}               t_globs;
+	struct termios	g_saved_attr;
+	pid_t			g_shell_pgid;
+	int         	g_shell_term;
+	int         	g_shell_interac;
+	t_job			*g_first_job;
+}               	t_globs;
 
 #endif

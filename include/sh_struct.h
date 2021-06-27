@@ -159,6 +159,16 @@ typedef struct				s_job
 	int						foreground;
 }							t_job;
 
+typedef struct				s_job_l
+{
+	pid_t					pid;
+	t_pars_list				*p;
+	int						mypipe[2];
+	int						infile;
+	int						outfile;
+}							t_job_l;
+
+
 /*
 ** EXEC
 */

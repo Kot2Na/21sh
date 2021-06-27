@@ -27,19 +27,17 @@ void    init_shell(void)
 {
     globs()->g_shell_term = STDIN_FILENO;
     globs()->g_shell_interac = isatty(globs()->g_shell_term);
-
     if (globs()->g_shell_interac)
     {
-        //ft_printf("term = %d| pgrp = %d\n", tcgetpgrp(globs()->g_shell_term), getpgrp());
         while (tcgetpgrp(globs()->g_shell_term) != (globs()->g_shell_pgid = getpgrp()))
         {
-            kill(-globs()->g_shell_pgid, SIGTTIN);
+            kill(- globs()->g_shell_pgid, SIGTTIN);
         }
         remove_shell_signals();
         globs()->g_shell_pgid = getpid();
         if (setpgid(globs()->g_shell_pgid, globs()->g_shell_pgid) < 0)
         {
-            perror ("Couldn't put the shell in its own process group");
+            perror ("Can't put the shell in its own process group");
             exit (1);
         }
         tcsetpgrp(0, globs()->g_shell_pgid);

@@ -29,40 +29,62 @@ static void	cod_child(t_exec_lst *execlist, t_pars_list **list)
 
 static int	run_fork(t_exec_lst *execlist, t_pars_list **list, t_job *jobs)
 {
-	pid_t	pid;
-
-	if ((pid = fork()) < 0)
-		error_system(execlist, EXEC_ERROR_NUM);
-	if (!pid)
+	t_job_l job_l;
+	
+	job_l.infile = jobs->stdinc;
+	job_l.p = jobs->first_process;
+	job_l.mypipe[0] = 0;
+	job_l.mypipe[1] = 0;
+	while (job_l.p)
 	{
-		jobs->pgid == 0 ? jobs->pgid = pid : 0;
-		setpgid(pid, jobs->pgid);
-		recover_shell_signals();
-
-		if ((*list)->foreground)
+		if (job_l.p->next)
 		{
-			tcsetpgrp(globs()->g_shell_term, jobs->pgid);
+			if (pipe(job_l.mypipe) < 0)
+				exit(1);
+			job_l.outfile = job_l.mypipe[1];
 		}
-		write_name_run(execlist, *list);
-		cod_child(execlist, list);
+		else
+			job_l.outfile = jobs->stdoutc;
+
+		if ((job_l.pid = fork()) < 0)
+			error_system(execlist, EXEC_ERROR_NUM);
+		if (!job_l.pid)
+		{
+			write_name_run(execlist, *list);
+			cod_child(execlist, list);
+		}
+		else
+		{
+			if (globs()->g_shell_interac)
+			{
+				if (!jobs->pgid)
+					jobs->pgid = job_l.pid;
+				setpgid(job_l.pid, jobs->pgid);
+			}
+			sh21_signals(ignore_signals);
+		}
+		(*list)->pid = job_l.pid;
+
+			
+		if (job_l.infile != jobs->stdinc)
+			close(job_l.infile);
+		if (job_l.outfile != jobs->stdoutc)
+			close(job_l.outfile);
+		job_l.infile = job_l.mypipe[0];
+
+		job_l.p = job_l.p->next;
+		(*list)->completed = 0;
+
+		if (!globs()->g_shell_interac)
+		{
+			job_wait(jobs);
+		}
+		else if (jobs->foreground)
+			put_job_in_foreground(jobs, 0);
+		else
+			put_job_in_background(jobs, 0);
+
 	}
-	else
-		sh21_signals(ignore_signals);
-	(*list)->pid = pid;
-	if (globs()->g_shell_interac)
-	{
-		if (jobs->pgid <= 0)
-			jobs->pgid = pid;
-		setpgid(pid, jobs->pgid);
-	}
-	(*list)->completed = 0;
-	g_pid = pid;
-	waitpid(pid, &(*list)->status, WUNTRACED);
-	(*list)->completed = 1;
-	error_system(execlist, (*list)->status);
-	status_child(execlist, (*list)->status, pid, (*list)->name_run_func);
-	execlist->sh_term_lst.pid_last = pid;
-	execlist->sh_term_lst.exec_status = (*list)->status;
 	return ((*list)->status);
 }
 
